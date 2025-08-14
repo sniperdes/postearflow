@@ -7,60 +7,126 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #1e1e1e, #3b3b3b);
             color: white;
             text-align: center;
         }
+
         header {
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
+
         h1 {
             font-size: 3em;
             color: #ffcc00;
-            margin: 0;
+            margin-bottom: 20px;
         }
-        p {
-            max-width: 600px;
-            margin: 10px auto;
-            font-size: 1.2em;
+
+        p.description {
+            font-size: 1.3em;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
             line-height: 1.5em;
         }
+
         .btn {
             display: inline-block;
             margin-top: 20px;
-            padding: 12px 24px;
-            font-size: 1.1em;
+            padding: 14px 28px;
+            font-size: 1.2em;
             background-color: #ffcc00;
             color: #1e1e1e;
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-weight: bold;
             transition: 0.3s;
         }
+
         .btn:hover {
             background-color: #ffd633;
         }
+
+        section {
+            padding: 50px 20px;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .feature {
+            background-color: #2c2c2c;
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
         footer {
             margin-top: 50px;
             padding: 15px;
             font-size: 0.9em;
             background-color: #111;
         }
+
+        @media(max-width: 768px){
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>PosteARFlow</h1>
-        <p>Automatizá la publicación de imágenes y frases en redes sociales.  
-        Simple, rápido y sin complicaciones.</p>
-        <a href="#" class="btn">Probar Gratis</a>
-    </header>
+<header>
+    <h1>PosteARFlow</h1>
+    <p class="description">Automatizá la publicación de imágenes y frases en redes sociales.  
+    Simple, rápido y sin complicaciones.</p>
+    <a href="#" class="btn">Probar Gratis</a>
+</header>
 
-    <footer>
-        © 2025 PosteARFlow - Todos los derechos reservados.
-    </footer>
+<section>
+    <h2>Características</h2>
+    <div class="features">
+        <div class="feature">
+            <h3>Frases aleatorias</h3>
+            <p>Generá frases únicas para cada imagen automáticamente.</p>
+        </div>
+        <div class="feature">
+            <h3>Subida automática</h3>
+            <p>Publicá en Instagram, YouTube Shorts y Reels sin tocar nada.</p>
+        </div>
+        <div class="feature">
+            <h3>Imágenes personalizadas</h3>
+            <p>Agregá tus propias imágenes y textos específicos para cada publicación.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Ejemplo de Sofía</h2>
+    <p>Visualizá cómo se verían tus publicaciones con imágenes y frases generadas automáticamente.</p>
+    <div class="features">
+        <div class="feature">[Aquí va una imagen de ejemplo]</div>
+        <div class="feature">[Aquí va otra imagen de ejemplo]</div>
+    </div>
+</section>
+
+<footer>
+    © 2025 PosteARFlow - Todos los derechos reservados.
+</footer>
 
 </body>
 </html>
