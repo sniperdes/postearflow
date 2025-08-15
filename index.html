@@ -9,14 +9,29 @@
 <!-- Material Design Icons -->
 <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css" rel="stylesheet">
 <style>
-body {background-color:#f5f5f5;}
-.hero {background: linear-gradient(135deg,#1e1e1e,#3b3b3b); color:white; padding:100px 20px; text-align:center;}
-.hero h1 {font-size:3em; color:#ffcc00;}
-.hero p {font-size:1.3em; margin-bottom:30px;}
-.features .card {transition: transform 0.3s;}
-.features .card:hover {transform: translateY(-5px);}
-footer {background:#111; color:white; padding:20px 0; text-align:center;}
-.ads-section {margin:50px 0;}
+body {font-family:'Arial', sans-serif; background:#f5f5f5; scroll-behavior: smooth;}
+/* Hero */
+.hero {background: linear-gradient(135deg,#ff8c00,#ffcc00); color:#1e1e1e; padding:120px 20px; text-align:center;}
+.hero h1 {font-size:3.5em; font-weight:bold; animation:fadeInDown 1s;}
+.hero p {font-size:1.5em; margin:20px auto 40px auto; max-width:700px; animation:fadeIn 1.5s;}
+.btn-cta {font-weight:bold; font-size:1.3em; padding:16px 36px; transition:0.3s;}
+.btn-cta:hover {transform: scale(1.05);}
+@keyframes fadeInDown {from{opacity:0; transform:translateY(-50px);} to{opacity:1; transform:translateY(0);}}
+@keyframes fadeIn {from{opacity:0;} to{opacity:1;}}
+
+/* Features */
+.features .card {transition: transform 0.3s, box-shadow 0.3s;}
+.features .card:hover {transform: translateY(-10px); box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+
+/* Ads */
+.ads-section {margin:60px 0; text-align:center;}
+
+/* Examples */
+.examples img {border-radius:10px; transition: transform 0.3s;}
+.examples img:hover {transform: scale(1.05);}
+
+/* Footer */
+footer {background:#111; color:white; padding:25px 0; text-align:center;}
 </style>
 </head>
 <body>
@@ -25,46 +40,38 @@ footer {background:#111; color:white; padding:20px 0; text-align:center;}
 <section class="hero">
   <h1>PosteARFlow</h1>
   <p>Automatizá la publicación de imágenes y frases en redes sociales. Simple, rápido y sin complicaciones.</p>
-  <a href="#" class="btn btn-warning btn-lg">Probar Gratis</a>
+  <a href="#" class="btn btn-dark btn-cta">Probar Gratis</a>
 </section>
 
 <!-- Ads Section - arriba de características -->
-<section class="ads-section text-center">
-  <h2>Anuncio</h2>
+<section class="ads-section">
+  <h2 class="mb-4">Publicidad</h2>
   <div class="container">
     <!-- Pegá tu código de AdSense responsive aquí -->
-    <!-- Ejemplo: 
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="TU-CODIGO"
-         data-ad-slot="NUMERO-DEL-ANUNCIO"
-         data-ad-format="auto"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    -->
   </div>
 </section>
 
 <!-- Features Section -->
 <section class="py-5">
   <div class="container">
-    <h2 class="text-center mb-4 text-warning">Características</h2>
-    <div class="row features g-4">
+    <h2 class="text-center mb-5 text-warning">Características</h2>
+    <div class="row g-4 features">
       <div class="col-md-4">
-        <div class="card p-3 h-100 text-center shadow">
+        <div class="card p-4 text-center shadow-sm">
           <i class="mdi mdi-text-box-outline mdi-48px text-warning mb-3"></i>
           <h5 class="card-title">Frases aleatorias</h5>
           <p class="card-text">Generá frases únicas para cada imagen automáticamente.</p>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card p-3 h-100 text-center shadow">
+        <div class="card p-4 text-center shadow-sm">
           <i class="mdi mdi-upload-outline mdi-48px text-warning mb-3"></i>
           <h5 class="card-title">Subida automática</h5>
           <p class="card-text">Publicá en Instagram, YouTube Shorts y Reels sin tocar nada.</p>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card p-3 h-100 text-center shadow">
+        <div class="card p-4 text-center shadow-sm">
           <i class="mdi mdi-image-outline mdi-48px text-warning mb-3"></i>
           <h5 class="card-title">Imágenes personalizadas</h5>
           <p class="card-text">Agregá tus propias imágenes y textos específicos para cada publicación.</p>
@@ -75,30 +82,36 @@ footer {background:#111; color:white; padding:20px 0; text-align:center;}
 </section>
 
 <!-- Ads Section - después de características -->
-<section class="ads-section text-center">
-  <h2>Anuncio</h2>
+<section class="ads-section">
+  <h2 class="mb-4">Publicidad</h2>
   <div class="container">
-    <!-- Pegá otro anuncio responsive aquí si querés -->
+    <!-- Otro anuncio responsive aquí -->
   </div>
 </section>
 
 <!-- Examples Section -->
 <section class="py-5 bg-light">
   <div class="container">
-    <h2 class="text-center mb-4 text-dark">Ejemplos de Sofía</h2>
-    <div class="row g-4">
+    <h2 class="text-center mb-5 text-dark">Ejemplos </h2>
+    <div class="row g-4 examples">
       <div class="col-md-6">
-        <div class="card shadow">
+        <div class="card shadow-sm">
           <img src="https://via.placeholder.com/600x400?text=Ejemplo1" class="card-img-top" alt="Ejemplo 1">
         </div>
       </div>
       <div class="col-md-6">
-        <div class="card shadow">
+        <div class="card shadow-sm">
           <img src="https://via.placeholder.com/600x400?text=Ejemplo2" class="card-img-top" alt="Ejemplo 2">
         </div>
       </div>
     </div>
   </div>
+</section>
+
+<!-- Call-to-Action Section -->
+<section class="py-5 text-center" style="background: linear-gradient(135deg,#ffcc00,#ff8c00);">
+  <h2 class="mb-4 text-dark">¡Probá PosteARFlow hoy mismo!</h2>
+  <a href="#" class="btn btn-dark btn-cta">Empezar Gratis</a>
 </section>
 
 <!-- Footer -->
