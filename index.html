@@ -113,6 +113,114 @@ footer {background:#111; color:white; padding:25px 0; text-align:center;}
   <h2 class="mb-4 text-dark">¡Probá PosteARFlow hoy mismo!</h2>
   <a href="#" class="btn btn-dark btn-cta">Empezar Gratis</a>
 </section>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pack de Automatización n8n</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 5%;
+      text-align: center;
+    }
+    .card {
+      background: rgba(0,0,0,0.4);
+      border-radius: 20px;
+      padding: 30px;
+      margin: auto;
+      max-width: 700px;
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.4);
+    }
+    .btn-paypal {
+      background: #ffc439;
+      border: none;
+      color: black;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 12px;
+      margin-top: 20px;
+      font-weight: bold;
+      transition: 0.3s;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-paypal:hover {
+      background: #f1b600;
+      transform: scale(1.05);
+    }
+    .btn-download {
+      background: #27ae60;
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 12px;
+      margin-top: 20px;
+      font-weight: bold;
+      transition: 0.3s;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-download:hover {
+      background: #219150;
+      transform: scale(1.05);
+    }
+    .emoji {
+      font-size: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Página de venta -->
+  <div class="card">
+    <div class="emoji">⚡</div>
+    <h1>Pack de Automatización n8n</h1>
+    <p class="lead">Automatizá tu trabajo con nuestros <b>scripts exclusivos</b> listos para usar.</p>
+    <ul class="text-start" style="margin:auto;max-width:400px;">
+      <li>✅ Flujo de publicación automática en Instagram</li>
+      <li>✅ Generación de imágenes con IA</li>
+      <li>✅ Subida automática a YouTube</li>
+      <li>✅ Todo listo para n8n en tu PC</li>
+    </ul>
+    <h2 class="mt-4">$9.99 USD</h2>
+
+    <!-- Botón de PayPal -->
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_xclick">
+      <!-- 👉 CAMBIÁ ESTE MAIL POR EL DE TU PAYPAL -->
+      <input type="hidden" name="business" value="tu-correo-paypal@ejemplo.com">
+      <input type="hidden" name="item_name" value="Pack Automatización n8n">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="hidden" name="amount" value="9.99">
+      <!-- 👉 CAMBIÁ ESTA URL POR TU PÁGINA DE GRACIAS -->
+      <input type="hidden" name="return" value="https://tu-dominio.com/gracias.html">
+      <input type="submit" value="Comprar con PayPal" class="btn-paypal">
+    </form>
+  </div>
+
+  <!-- Página de gracias -->
+  <div class="card mt-5" id="gracias">
+    <div class="emoji">🎉</div>
+    <h1>¡Gracias por tu compra!</h1>
+    <p class="lead">Tu pago se procesó con éxito ✅</p>
+    <p>Ahora podés descargar tu pack de <b>scripts de automatización n8n</b>.</p>
+
+    <!-- Botón de descarga -->
+    <!-- 👉 CAMBIÁ ESTE LINK POR EL DEL ARCHIVO (Google Drive, Mega, Dropbox, etc.) -->
+    <a href="https://TU-LINK-DE-DESCARGA.com/pack.zip" class="btn-download">⬇ Descargar Ahora</a>
+
+    <p class="mt-4">Si tenés dudas o problemas, escribinos al soporte.</p>
+  </div>
+
+</body>
+</html>
+
 
 <!-- Footer -->
 <footer>
