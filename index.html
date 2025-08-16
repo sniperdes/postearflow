@@ -35,6 +35,14 @@
       transition: 0.3s;
     }
     .btn-landing:hover { background: #FFB300; transform: scale(1.05); }
+    .ad-space {
+      background:#ddd;
+      padding:40px;
+      border-radius:15px;
+      color:#333;
+      margin:40px auto;
+      max-width:700px;
+    }
   </style>
 </head>
 <body>
@@ -55,7 +63,7 @@
         <div class="col-md-4">
           <span class="material-icons feature-icon">bolt</span>
           <h4>Automatización</h4>
-          <p>Flujos listos en n8n para publicar y manejar contenido sin esfuerzo.</p>
+          <p>Flujos listos en n8n para publicar y manejar contenido sin esfuerzo: <b>Instagram Reels</b> y <b>YouTube Shorts</b>.</p>
         </div>
         <div class="col-md-4">
           <span class="material-icons feature-icon">code</span>
@@ -71,6 +79,26 @@
     </div>
   </section>
 
+  <!-- Publicidad 1 -->
+  <section class="py-5 bg-light text-center">
+    <div class="container">
+      <h3 class="mb-4">Publicidad</h3>
+      <div class="ad-space">
+        Tu primer banner o anuncio de Google AdSense iría aquí
+      </div>
+    </div>
+  </section>
+
+  <!-- Publicidad 2 -->
+  <section class="py-5 bg-light text-center">
+    <div class="container">
+      <h3 class="mb-4">Publicidad</h3>
+      <div class="ad-space">
+        Tu segundo banner o anuncio de Google AdSense iría aquí
+      </div>
+    </div>
+  </section>
+
   <!-- PayPal -->
   <section id="comprar" class="paypal-section">
     <div class="container">
@@ -81,12 +109,12 @@
       <!-- Botón de PayPal -->
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_xclick">
-        <!-- 👉 CAMBIÁ ESTE MAIL POR EL DE TU PAYPAL -->
+        <!-- CAMBIÁ ESTE MAIL POR EL DE TU PAYPAL -->
         <input type="hidden" name="business" value="tu-correo-paypal@ejemplo.com">
         <input type="hidden" name="item_name" value="Pack Automatización n8n">
         <input type="hidden" name="currency_code" value="USD">
         <input type="hidden" name="amount" value="15.00">
-        <!-- 👉 CAMBIÁ ESTA URL POR TU PÁGINA DE GRACIAS -->
+        <!-- CAMBIÁ ESTA URL POR TU PÁGINA DE GRACIAS -->
         <input type="hidden" name="return" value="https://tu-usuario.github.io/postearflow/gracias.html">
         <input type="submit" value="Comprar con PayPal" class="btn-landing">
       </form>
