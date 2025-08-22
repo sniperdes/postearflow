@@ -1,330 +1,153 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PosteARFlow — Panel</title>
-
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planes de Publicación</title>
   <style>
-    :root{
-      --bg:#0f1020; --card:#17182b; --muted:#9aa0b4;
-      --primary:#6a4cff; --primary-2:#3b2b8f; --accent:#ffc107;
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: #f5f5f5;
+      margin: 0;
+      padding: 0;
     }
-    body{ font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-          background:linear-gradient(180deg,#0c0d1a, #0f1020 30%, #101226 100%); color:#e9ecf5; }
-    .navbar{ background:#0b0c18; }
-    .brand{ font-weight:800; letter-spacing:.5px; }
-    .hero-mini{ background: radial-gradient(1200px circle at 10% -10%, #6a4cff22 0, transparent 40%);
-      padding: 28px 0; border-bottom: 1px solid #232544; }
-    .cardx{ background:linear-gradient(180deg,#1a1b32,#14152b);
-      border:1px solid #2a2c4e; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,.25);}
-    .cardx h5{ font-weight:700; }
-    .muted{ color:var(--muted); }
-    .badge-soft{ background:#2a2c4e; color:#cfd3e9; }
-    .btn-primary{ background:var(--primary); border-color:var(--primary-2); }
-    .btn-primary:hover{ background:#7a61ff; border-color:#5c47d6; }
-    .btn-accent{ background:var(--accent); color:#111; font-weight:700; }
-    .btn-outline{ border:1px dashed #3a3c66; color:#d5daf7; }
-    .dropzone {
-      border:2px dashed #3a3c66; border-radius:14px; padding:16px; text-align:center;
-      background:#12132a;
+    header {
+      text-align: center;
+      padding: 2rem;
     }
-    input[type="file"]{ color:#cbd1f6; }
-    .form-check-label{ color:#cfd3e9; }
-    footer{ color:#b9c0e3; }
-    .table{ color:#e9ecf5; }
-    .table tr td, .table tr th{ border-color:#2a2c4e !important; }
-    .toast-container{ z-index: 1080; }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
+    .planes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .plan {
+      background: #1a1a1a;
+      border-radius: 15px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    }
+    .plan h2 {
+      font-size: 1.5rem;
+      margin-bottom: .5rem;
+    }
+    .precio {
+      font-size: 2rem;
+      color: #00ff99;
+      margin: 1rem 0;
+    }
+    .plan ul {
+      text-align: left;
+      margin: 1rem 0;
+      padding-left: 1rem;
+    }
+    .plan li {
+      margin: .3rem 0;
+    }
+    .botones {
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+      margin-top: 1rem;
+    }
+    button, a {
+      display: block;
+      padding: .8rem;
+      border-radius: 10px;
+      border: none;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+    }
+    button {
+      background: #00ff99;
+      color: #0d0d0d;
+    }
+    a {
+      background: #0070ba;
+      color: #fff;
+    }
+    .qr {
+      margin-top: 1rem;
+      font-size: .9rem;
+      opacity: .8;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Planes de Publicación</h1>
+    <p>Elegí el plan que mejor se adapte a vos</p>
+  </header>
 
-  <!-- NAV -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand brand" href="#">PosteARFlow</a>
-      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="material-icons">menu</span></button>
-      <div id="nav" class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link text-white-50" href="#uploads">Subidas</a></li>
-          <li class="nav-item"><a class="nav-link text-white-50" href="#config">Config</a></li>
-          <li class="nav-item"><a class="nav-link text-white-50" href="#programacion">Programación</a></li>
-          <li class="nav-item"><a class="nav-link text-white-50" href="#estado">Estado</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="index.html">← Landing</a></li>
-        </ul>
+  <section class="planes">
+    <!-- Starter -->
+    <div class="plan">
+      <h2>Starter</h2>
+      <p class="precio">$10 / mes</p>
+      <ul>
+        <li>10 publicaciones al mes</li>
+        <li>Frases incluidas</li>
+        <li>Sin audio</li>
+      </ul>
+      <div class="botones">
+        <button onclick="enviarPlan('starter')">Elegir plan</button>
+        <a href="https://www.paypal.com/ncp/payment/STARTER_LINK">Pagar con PayPal</a>
+        <div class="qr">Pronto: QR Brubank</div>
       </div>
     </div>
-  </nav>
 
-  <!-- HEADER -->
-  <section class="hero-mini">
-    <div class="container">
-      <div class="d-flex align-items-center justify-content-between flex-wrap">
-        <div>
-          <h1 class="h3 mb-1">Panel de Automatización</h1>
-          <p class="muted mb-0">Subí tus <b>imágenes</b>, <b>frases</b> y <b>música</b>, elegí redes y frecuencia… ¡y listo!</p>
-        </div>
-        <div class="d-flex gap-2 mt-3 mt-md-0">
-          <button id="btnGuardarTodo" class="btn btn-primary">Guardar configuración</button>
-          <button id="btnEjecutarAhora" class="btn btn-accent">Ejecutar ahora</button>
-        </div>
+    <!-- Pro -->
+    <div class="plan">
+      <h2>Pro</h2>
+      <p class="precio">$25 / mes</p>
+      <ul>
+        <li>30 publicaciones al mes</li>
+        <li>Frases + imágenes IA</li>
+        <li>Incluye audio</li>
+      </ul>
+      <div class="botones">
+        <button onclick="enviarPlan('pro')">Elegir plan</button>
+        <a href="https://www.paypal.com/ncp/payment/PRO_LINK">Pagar con PayPal</a>
+        <div class="qr">Pronto: QR Brubank</div>
+      </div>
+    </div>
+
+    <!-- Premium -->
+    <div class="plan">
+      <h2>Premium</h2>
+      <p class="precio">$50 / mes</p>
+      <ul>
+        <li>Publicaciones ilimitadas</li>
+        <li>Frases + imágenes IA</li>
+        <li>Audios personalizados</li>
+      </ul>
+      <div class="botones">
+        <button onclick="enviarPlan('premium')">Elegir plan</button>
+        <a href="https://www.paypal.com/ncp/payment/PREMIUM_LINK">Pagar con PayPal</a>
+        <div class="qr">Pronto: QR Brubank</div>
       </div>
     </div>
   </section>
 
-  <main class="py-4">
-    <div class="container">
-      <div class="row g-4">
-
-        <!-- SUBIDAS -->
-        <div id="uploads" class="col-12">
-          <div class="cardx p-4">
-            <div class="d-flex justify-content-between align-items-center">
-              <h5 class="mb-0">Tus archivos</h5>
-              <span class="badge badge-soft">Paso 1</span>
-            </div>
-            <p class="muted mt-2">Cargá los recursos que quieras automatizar.</p>
-            <div class="row g-3">
-              <div class="col-lg-4">
-                <label class="form-label">Imágenes (JPG/PNG) — múltiples</label>
-                <div class="dropzone">
-                  <input id="images" class="form-control" type="file" accept="image/*" multiple>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <label class="form-label">Frases</label>
-                <textarea id="frases" class="form-control" rows="6" placeholder="Pegá una frase por línea, o subí un .txt abajo"></textarea>
-                <div class="mt-2">
-                  <input id="frasesTxt" type="file" class="form-control" accept=".txt">
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <label class="form-label">Música (MP3/ WAV) — opcional</label>
-                <div class="dropzone">
-                  <input id="musica" class="form-control" type="file" accept="audio/*" multiple>
-                </div>
-                <div class="form-text text-white-50 mt-1">Si no subís música, usamos librería por defecto.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CONFIGURACIÓN -->
-        <div id="config" class="col-12">
-          <div class="cardx p-4">
-            <div class="d-flex justify-content-between align-items-center">
-              <h5 class="mb-0">Configuración</h5>
-              <span class="badge badge-soft">Paso 2</span>
-            </div>
-
-            <div class="row g-4 mt-1">
-              <div class="col-md-6">
-                <h6 class="mb-2">Destino</h6>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="instagram" id="destIG" checked>
-                  <label class="form-check-label" for="destIG">Instagram Reels</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="youtube" id="destYT" checked>
-                  <label class="form-check-label" for="destYT">YouTube Shorts</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="tiktok" id="destTT" disabled>
-                  <label class="form-check-label text-muted" for="destTT">TikTok (Próximamente)</label>
-                </div>
-                <div class="mt-3">
-                  <label class="form-label">Plantilla de texto</label>
-                  <select id="plantilla" class="form-select">
-                    <option value="random">Frase aleatoria</option>
-                    <option value="especifica">Frase específica por imagen</option>
-                    <option value="marca">Plantilla de marca (color, tipografía)</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <h6 class="mb-2">Edición</h6>
-                <div class="row g-2">
-                  <div class="col-6">
-                    <label class="form-label">Formato</label>
-                    <select id="formato" class="form-select">
-                      <option value="1080x1920">Vertical 1080×1920</option>
-                      <option value="720x1280">Vertical 720×1280</option>
-                    </select>
-                  </div>
-                  <div class="col-6">
-                    <label class="form-label">Duración video</label>
-                    <select id="duracion" class="form-select">
-                      <option value="12">12s</option>
-                      <option value="20">20s</option>
-                      <option value="30">30s</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-check form-switch mt-3">
-                  <input class="form-check-input" type="checkbox" id="marcaAgua" checked>
-                  <label class="form-check-label" for="marcaAgua">Agregar marca de agua</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROGRAMACIÓN -->
-        <div id="programacion" class="col-12">
-          <div class="cardx p-4">
-            <div class="d-flex justify-content-between align-items-center">
-              <h5 class="mb-0">Programación</h5>
-              <span class="badge badge-soft">Paso 3</span>
-            </div>
-            <div class="row g-3 mt-1">
-              <div class="col-md-4">
-                <label class="form-label">Frecuencia</label>
-                <select id="frecuencia" class="form-select">
-                  <option value="manual">Solo manual</option>
-                  <option value="cada_3h">Cada 3 horas</option>
-                  <option value="diario_09">Diario 09:00</option>
-                  <option value="diario_18">Diario 18:00</option>
-                  <option value="semanal">Semanal (lunes 09:00)</option>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">Zona horaria</label>
-                <input id="tz" class="form-control" type="text" placeholder="America/Argentina/Buenos_Aires" value="America/Argentina/Buenos_Aires">
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">Límite de publicaciones / día</label>
-                <input id="limiteDia" class="form-control" type="number" min="1" max="50" value="5">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ESTADO -->
-        <div id="estado" class="col-12">
-          <div class="cardx p-4">
-            <div class="d-flex justify-content-between align-items-center">
-              <h5 class="mb-0">Estado de últimas ejecuciones</h5>
-              <span class="badge badge-soft">Logs</span>
-            </div>
-            <div class="table-responsive mt-3">
-              <table class="table table-sm align-middle">
-                <thead>
-                  <tr><th>Fecha</th><th>Acción</th><th>Red</th><th>Resultado</th></tr>
-                </thead>
-                <tbody id="tablaLogs">
-                  <tr><td>—</td><td>—</td><td>—</td><td class="muted">Sin ejecuciones todavía</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </main>
-
-  <footer class="py-4">
-    <div class="container text-center">
-      <small>© 2025 PosteARFlow — Automatización simple para IG Reels y YouTube Shorts.</small>
-    </div>
-  </footer>
-
-  <!-- Toasts -->
-  <div class="toast-container position-fixed top-0 end-0 p-3">
-    <div id="toast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="d-flex">
-        <div class="toast-body" id="toastMsg">Acción realizada.</div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    const showToast = (msg) => {
-      document.getElementById('toastMsg').innerText = msg;
-      const t = new bootstrap.Toast(document.getElementById('toast'));
-      t.show();
-    };
-
-    // Carga opcional de frases desde .txt
-    const frasesTxt = document.getElementById('frasesTxt');
-    frasesTxt?.addEventListener('change', async (e)=>{
-      const file = e.target.files?.[0];
-      if(!file) return;
-      const txt = await file.text();
-      const ta = document.getElementById('frases');
-      ta.value = (ta.value? ta.value+"\n":"") + txt.trim();
-      showToast('Frases cargadas desde TXT');
-    });
-
-    document.getElementById('btnGuardarTodo').addEventListener('click', async ()=>{
-      const payload = buildPayload(false);
-      console.log('Guardar configuración', payload);
-      showToast('Configuración guardada (demo).');
-    });
-
-    document.getElementById('btnEjecutarAhora').addEventListener('click', async ()=>{
-      const payload = buildPayload(true);
-      console.log('Ejecutar ahora', payload);
-      addLog('Ahora', 'Ejecución manual', redesSeleccionadas(payload), 'Enviado');
-      showToast('Ejecución enviada (demo).');
-    });
-
-    function redesSeleccionadas(payload){
-      const r = [];
-      if(payload.config.dest.instagram) r.push('IG Reels');
-      if(payload.config.dest.youtube) r.push('YT Shorts');
-      // TikTok queda deshabilitado, no lo agregamos
-      return r.join(', ');
-    }
-
-    function addLog(fecha, accion, red, resultado){
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${fecha}</td><td>${accion}</td><td>${red}</td><td>${resultado}</td>`;
-      const tb = document.getElementById('tablaLogs');
-      if(tb.children.length===1 && tb.children[0].innerText.includes('Sin ejecuciones')) tb.innerHTML='';
-      tb.prepend(tr);
-    }
-
-    function buildPayload(includeBlobs){
-      const imgs = Array.from(document.getElementById('images').files || []);
-      const music = Array.from(document.getElementById('musica').files || []);
-      const frasesRaw = document.getElementById('frases').value.trim();
-      const frasesArray = frasesRaw ? frasesRaw.split('\n').map(s=>s.trim()).filter(Boolean) : [];
-
-      const cfg = {
-        dest: {
-          instagram: document.getElementById('destIG').checked,
-          youtube: document.getElementById('destYT').checked,
-          // TikTok deshabilitado
-        },
-        plantilla: document.getElementById('plantilla').value,
-        formato: document.getElementById('formato').value,
-        duracion: +document.getElementById('duracion').value,
-        marcaAgua: document.getElementById('marcaAgua').checked,
-        schedule: {
-          frecuencia: document.getElementById('frecuencia').value,
-          tz: document.getElementById('tz').value,
-          limiteDia: +document.getElementById('limiteDia').value
-        }
-      };
-
-      return {
-        images: includeBlobs ? imgs.map(f => ({name:f.name, blob:f})) : imgs.map(f=>f.name),
-        music: includeBlobs ? music.map(f => ({name:f.name, blob:f})) : music.map(f=>f.name),
-        frasesArray,
-        config: cfg
-      };
+    function enviarPlan(plan) {
+      fetch("https://tu-n8n-webhook-url.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan })
+      })
+      .then(res => alert("Tu elección fue enviada: " + plan))
+      .catch(err => alert("Error: " + err));
     }
   </script>
 </body>
