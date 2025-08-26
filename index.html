@@ -2,76 +2,133 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PostearFlow - Automatización Inteligente</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>Content Automation - Demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-gray-900">
-  <!-- Header -->
-  <header class="bg-blue-900 text-white p-6 shadow-md">
-    <div class="max-w-4xl mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">PostearFlow</h1>
-      <nav>
-        <a href="#servicios" class="px-3 hover:underline">Servicios</a>
-        <a href="#registro" class="px-3 hover:underline">Registro</a>
-        <a href="#contacto" class="px-3 hover:underline">Contacto</a>
-      </nav>
-    </div>
-  </header>
+<body class="bg-light">
+  <div class="container py-5">
+    <h1 class="text-center mb-4">Content Automation</h1>
+    <p class="text-center">Registrate, elegí tu plan y probá cómo funciona la plataforma 🚀</p>
 
-  <!-- Hero -->
-  <section class="text-center py-16 bg-gradient-to-r from-blue-800 to-blue-600 text-white">
-    <h2 class="text-4xl font-bold mb-4">Automatización de Redes Inteligente</h2>
-    <p class="text-lg max-w-2xl mx-auto mb-6">
-      Con PostearFlow llevá tus publicaciones al siguiente nivel. Simplificá el proceso y hacé crecer tu presencia online sin esfuerzo.
-    </p>
-    <a href="#registro" class="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-300">Registrate Gratis</a>
-  </section>
+    <!-- Registro -->
+    <div class="card mb-4">
+      <div class="card-header">Registro</div>
+      <div class="card-body">
+        <input id="regEmail" class="form-control mb-2" placeholder="Email">
+        <input id="regPass" type="password" class="form-control mb-2" placeholder="Contraseña">
 
-  <!-- Servicios -->
-  <section id="servicios" class="max-w-4xl mx-auto py-12 px-4">
-    <h3 class="text-3xl font-bold text-center mb-8">Nuestros Servicios</h3>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-white p-6 rounded-lg shadow-md">
-        <h4 class="font-semibold text-xl mb-2">Automatización</h4>
-        <p>Publicación automática en Instagram, TikTok y YouTube.</p>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow-md">
-        <h4 class="font-semibold text-xl mb-2">Inteligencia Artificial</h4>
-        <p>Generación de contenido optimizado con IA integrada.</p>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow-md">
-        <h4 class="font-semibold text-xl mb-2">Gestión Simplificada</h4>
-        <p>Panel centralizado y estadísticas claras para tu negocio.</p>
+        <select id="regPlan" class="form-select mb-2">
+          <option value="básico">Plan Básico</option>
+          <option value="pro">Plan Pro</option>
+          <option value="premium">Plan Premium</option>
+        </select>
+
+        <button class="btn btn-primary w-100" onclick="register()">Registrarse</button>
       </div>
     </div>
-  </section>
 
-  <!-- Registro -->
-  <section id="registro" class="bg-gray-200 py-12">
-    <div class="max-w-lg mx-auto text-center">
-      <h3 class="text-3xl font-bold mb-6">Registrate para empezar</h3>
-      <form action="/registro" method="POST" class="bg-white shadow-md p-6 rounded-lg">
-        <label for="nombre" class="block mb-2 text-left">Nombre</label>
-        <input type="text" id="nombre" name="nombre" class="w-full border p-2 rounded mb-4" required>
-
-        <label for="email" class="block mb-2 text-left">Email</label>
-        <input type="email" id="email" name="email" class="w-full border p-2 rounded mb-4" required>
-
-        <button type="submit" class="w-full bg-blue-700 text-white py-2 rounded-lg hover:bg-blue-600">Registrarme</button>
-      </form>
+    <!-- Login -->
+    <div class="card mb-4">
+      <div class="card-header">Login</div>
+      <div class="card-body">
+        <input id="loginEmail" class="form-control mb-2" placeholder="Email">
+        <input id="loginPass" type="password" class="form-control mb-2" placeholder="Contraseña">
+        <button class="btn btn-success w-100" onclick="login()">Ingresar</button>
+      </div>
     </div>
-  </section>
 
-  <!-- Contacto -->
-  <section id="contacto" class="max-w-4xl mx-auto py-12 px-4">
-    <h3 class="text-3xl font-bold text-center mb-6">Contacto</h3>
-    <p class="text-center">Escribinos a <a href="mailto:info@postearflow.com" class="text-blue-700 underline">info@postearflow.com</a></p>
-  </section>
+    <!-- Crear solicitud de contenido -->
+    <div class="card mb-4 d-none" id="contentCard">
+      <div class="card-header">Crear solicitud de contenido</div>
+      <div class="card-body">
+        <select id="serviceType" class="form-select mb-2">
+          <option value="instagram">Instagram</option>
+          <option value="youtube">YouTube</option>
+          <option value="tiktok">TikTok</option>
+        </select>
+        <textarea id="contentText" class="form-control mb-2" placeholder="Escribí el contenido a generar"></textarea>
+        <button class="btn btn-warning w-100" onclick="createRequest()">Enviar solicitud</button>
+      </div>
+    </div>
 
-  <!-- Footer -->
-  <footer class="bg-blue-900 text-white text-center p-4 mt-8">
-    <p>© 2025 PostearFlow - Todos los derechos reservados.</p>
-  </footer>
+    <!-- Ver solicitudes -->
+    <div class="card d-none" id="requestsCard">
+      <div class="card-header">Mis solicitudes</div>
+      <div class="card-body" id="requestsList"></div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = "http://localhost:8000";
+    let currentUser = null;
+
+    async function register() {
+      const email = document.getElementById("regEmail").value;
+      const password = document.getElementById("regPass").value;
+      const plan = document.getElementById("regPlan").value;
+
+      const res = await fetch(`${API_URL}/register`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ email, password, plan })
+      });
+
+      const data = await res.json();
+      alert(data.message || JSON.stringify(data));
+    }
+
+    async function login() {
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPass").value;
+
+      const res = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ email, password })
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        alert(data.message);
+        currentUser = data.user_id;
+        document.getElementById("contentCard").classList.remove("d-none");
+        document.getElementById("requestsCard").classList.remove("d-none");
+        loadRequests();
+      } else {
+        alert("Error en login");
+      }
+    }
+
+    async function createRequest() {
+      if (!currentUser) return alert("Debes iniciar sesión primero");
+
+      const service_type = document.getElementById("serviceType").value;
+      const content_text = document.getElementById("contentText").value;
+
+      const res = await fetch(`${API_URL}/users/${currentUser}/content`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ service_type, content_text })
+      });
+
+      const data = await res.json();
+      alert(data.message);
+      loadRequests();
+    }
+
+    async function loadRequests() {
+      if (!currentUser) return;
+
+      const res = await fetch(`${API_URL}/users/${currentUser}/requests`);
+      const data = await res.json();
+
+      let html = "";
+      data.requests.forEach(r => {
+        html += `<div class="border p-2 mb-2"><b>${r.service_type}</b>: ${r.content_text} <i>(${r.status})</i></div>`;
+      });
+
+      document.getElementById("requestsList").innerHTML = html || "Sin solicitudes aún";
+    }
+  </script>
 </body>
 </html>
