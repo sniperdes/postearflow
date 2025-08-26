@@ -1,246 +1,116 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PosteARFlow - Prueba</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #111;
-      color: #fff;
-      text-align: center;
-    }
-    header {
-      background: #222;
-      padding: 20px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      color: #f1f1f1;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .plans {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin: 40px 0;
-    }
-    .plan {
-      background: #1a1a1a;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-    .plan h2 {
-      margin-bottom: 10px;
-      color: #ffcc00;
-    }
-    .plan p {
-      font-size: 0.9rem;
-      margin: 10px 0;
-    }
-    .btn, .btn-register, .btn-content {
-      display: block;
-      margin: 10px auto;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      background: #ffcc00;
-      color: #000;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .btn:hover, .btn-register:hover, .btn-content:hover {
-      background: #ffaa00;
-    }
-    .trial-section, .ads, .message, .content-section {
-      margin: 40px 0;
-    }
-    .trial-section, .ads, .content-section {
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 12px;
-    }
-    .ads {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-    .ad {
-      background: #333;
-      padding: 40px 10px;
-      border-radius: 8px;
-      color: #bbb;
-    }
-    input, textarea, select {
-      padding: 10px;
-      border-radius: 6px;
-      border: none;
-      width: 80%;
-      max-width: 300px;
-      margin-bottom: 10px;
-    }
-    textarea {
-      resize: vertical;
-      height: 80px;
-    }
-    footer {
-      background: #222;
-      padding: 15px;
-      margin-top: 30px;
-      font-size: 0.8rem;
-      color: #aaa;
-    }
-    .message {
-      font-size: 1rem;
-      color: #0f0;
-    }
-    .error {
-      color: #f00;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PosteARFlow - Prueba Google</title>
+<style>
+  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#111; color:#fff; text-align:center;}
+  header { background:#222; padding:20px;}
+  header h1 { margin:0; font-size:2rem; color:#f1f1f1;}
+  .container { max-width:1000px; margin:0 auto; padding:20px;}
+  .plans { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:20px; margin:40px 0;}
+  .plan { background:#1a1a1a; border-radius:12px; padding:20px; box-shadow:0 0 10px rgba(0,0,0,0.5);}
+  .plan h2 { margin-bottom:10px; color:#ffcc00;}
+  .plan p { font-size:0.9rem; margin:10px 0;}
+  .btn, .btn-google, .btn-content { display:block; margin:10px auto; padding:10px 20px; border:none; border-radius:8px; cursor:pointer; background:#ffcc00; color:#000; font-weight:bold; text-decoration:none;}
+  .btn:hover, .btn-google:hover, .btn-content:hover { background:#ffaa00;}
+  .trial-section, .ads, .content-section, .message { margin:40px 0;}
+  .trial-section, .ads, .content-section { background:#1a1a1a; padding:20px; border-radius:12px;}
+  .ads { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px;}
+  .ad { background:#333; padding:40px 10px; border-radius:8px; color:#bbb;}
+  textarea, select { padding:10px; border-radius:6px; border:none; width:80%; max-width:300px; margin-bottom:10px;}
+  textarea { resize:vertical; height:80px;}
+  footer { background:#222; padding:15px; margin-top:30px; font-size:0.8rem; color:#aaa;}
+  .message { font-size:1rem; color:#0f0;}
+  .error { color:#f00;}
+</style>
 </head>
 <body>
-  <header>
-    <h1>PosteARFlow</h1>
-  </header>
+<header>
+  <h1>PosteARFlow</h1>
+</header>
 
-  <div class="container">
+<div class="container">
 
-    <!-- Registro de prueba -->
-    <div class="trial-section">
-      <h2>Probá PostearFlow</h2>
-      <p>Registrate con tu mail para probar la web</p>
-      <input type="email" id="email" placeholder="Tu email" required>
-      <input type="password" id="password" placeholder="Contraseña" required>
-      <select id="plan">
-        <option value="básico">Básico</option>
-        <option value="pro">Pro</option>
-        <option value="premium">Premium</option>
-      </select>
-      <button class="btn-register" onclick="registerUser()">Registrarme</button>
-      <div class="message" id="message"></div>
-    </div>
-
-    <!-- Planes -->
-    <h2>Elegí tu plan</h2>
-    <div class="plans">
-      <div class="plan">
-        <h2>Plan Básico</h2>
-        <p>10 publicaciones por mes</p>
-        <p>Imágenes + frases</p>
-      </div>
-
-      <div class="plan">
-        <h2>Plan Pro</h2>
-        <p>30 publicaciones por mes</p>
-        <p>Incluye imágenes + frases + audio</p>
-      </div>
-
-      <div class="plan">
-        <h2>Plan Premium</h2>
-        <p>Publicaciones ilimitadas</p>
-        <p>Todo incluido + soporte prioritario</p>
-      </div>
-    </div>
-
-    <!-- Formulario de contenido -->
-    <div class="content-section" id="content-section" style="display:none;">
-      <h2>Prueba de envío de contenido</h2>
-      <textarea id="content-text" placeholder="Escribí algo para probar..."></textarea>
-      <button class="btn-content" onclick="sendContent()">Enviar Contenido</button>
-      <div class="message" id="content-message"></div>
-    </div>
-
-    <!-- Espacios publicitarios -->
-    <div class="ads">
-      <div class="ad">Espacio Publicitario 1</div>
-      <div class="ad">Espacio Publicitario 2</div>
-      <div class="ad">Espacio Publicitario 3</div>
-    </div>
-
+  <!-- Registro/Inicio con Google -->
+  <div class="trial-section">
+    <h2>Probá PostearFlow</h2>
+    <p>Iniciá sesión con tu cuenta de Google</p>
+    <button class="btn-google" onclick="loginWithGoogle()">Iniciar con Google</button>
+    <div class="message" id="message"></div>
   </div>
 
-  <footer>
-    © 2025 PosteARFlow - Todos los derechos reservados
-  </footer>
+  <!-- Planes -->
+  <h2>Elegí tu plan</h2>
+  <div class="plans">
+    <div class="plan"><h2>Plan Básico</h2><p>10 publicaciones por mes</p><p>Imágenes + frases</p></div>
+    <div class="plan"><h2>Plan Pro</h2><p>30 publicaciones por mes</p><p>Incluye imágenes + frases + audio</p></div>
+    <div class="plan"><h2>Plan Premium</h2><p>Publicaciones ilimitadas</p><p>Todo incluido + soporte prioritario</p></div>
+  </div>
 
-  <script>
-    let userId = null;
+  <!-- Formulario de contenido -->
+  <div class="content-section" id="content-section" style="display:none;">
+    <h2>Prueba de envío de contenido</h2>
+    <textarea id="content-text" placeholder="Escribí algo para probar..."></textarea>
+    <button class="btn-content" onclick="sendContent()">Enviar Contenido</button>
+    <div class="message" id="content-message"></div>
+  </div>
 
-    async function registerUser() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const plan = document.getElementById("plan").value;
-      const messageDiv = document.getElementById("message");
+  <!-- Espacios publicitarios -->
+  <div class="ads">
+    <div class="ad">Espacio Publicitario 1</div>
+    <div class="ad">Espacio Publicitario 2</div>
+    <div class="ad">Espacio Publicitario 3</div>
+  </div>
 
-      if (!email || !password) {
-        messageDiv.textContent = "Completa todos los campos";
-        messageDiv.className = "message error";
-        return;
-      }
+</div>
 
-      try {
-        const res = await fetch("http://localhost:8000/register", {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({email, password, plan})
-        });
+<footer>© 2025 PosteARFlow - Todos los derechos reservados</footer>
 
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.detail || "Error desconocido");
+<script>
+  let userId = null;
 
-        userId = data.user_id;
-        messageDiv.textContent = "Usuario registrado correctamente. ¡Ya podés probar la web!";
-        messageDiv.className = "message";
+  // Simulación de login con Google (solo para testeo)
+  async function loginWithGoogle() {
+    const messageDiv = document.getElementById("message");
+    try {
+      // Aquí en producción iría OAuth real, para testeo generamos un ID random
+      userId = "user-" + Math.floor(Math.random()*1000000);
+      messageDiv.textContent = "Login con Google simulado. Ya podés probar la web!";
+      messageDiv.className = "message";
+      document.getElementById("content-section").style.display = "block";
+    } catch(err) {
+      messageDiv.textContent = "Error: " + err.message;
+      messageDiv.className = "message error";
+    }
+  }
 
-        // Mostrar formulario de contenido
-        document.getElementById("content-section").style.display = "block";
-
-      } catch (err) {
-        messageDiv.textContent = "Error: " + err.message;
-        messageDiv.className = "message error";
-      }
+  async function sendContent() {
+    const content = document.getElementById("content-text").value;
+    const messageDiv = document.getElementById("content-message");
+    if (!content) {
+      messageDiv.textContent = "Escribí algo antes de enviar";
+      messageDiv.className = "message error";
+      return;
     }
 
-    async function sendContent() {
-      const content = document.getElementById("content-text").value;
-      const messageDiv = document.getElementById("content-message");
-
-      if (!content) {
-        messageDiv.textContent = "Escribí algo antes de enviar";
-        messageDiv.className = "message error";
-        return;
-      }
-
-      try {
-        const res = await fetch(`http://localhost:8000/users/${userId}/content`, {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({service_type: "test", content_text: content})
-        });
-
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.detail || "Error desconocido");
-
-        messageDiv.textContent = "Contenido enviado con éxito!";
-        messageDiv.className = "message";
-        document.getElementById("content-text").value = "";
-
-      } catch (err) {
-        messageDiv.textContent = "Error: " + err.message;
-        messageDiv.className = "message error";
-      }
+    try {
+      const res = await fetch(`http://localhost:8000/users/${userId}/content`, {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({service_type:"test", content_text:content})
+      });
+      const data = await res.json();
+      if(!res.ok) throw new Error(data.detail || "Error desconocido");
+      messageDiv.textContent = "Contenido enviado con éxito!";
+      messageDiv.className = "message";
+      document.getElementById("content-text").value = "";
+    } catch(err) {
+      messageDiv.textContent = "Error: " + err.message;
+      messageDiv.className = "message error";
     }
-  </script>
+  }
+</script>
 </body>
 </html>
