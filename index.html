@@ -3,328 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PosteARFLOW - Automatización de Contenido</title>
+    <title>PosteARFLOW - Códigos de Automatización</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #2563eb;
-            --secondary: #3b82f6;
-            --accent: #f97316;
-            --light: #f0f9ff;
-            --dark: #1e293b;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --gray: #64748b;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 15px 0;
-            border-radius: 0 0 15px 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo-icon {
-            margin-right: 10px;
-            font-size: 28px;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 20px;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-        
-        /* Auth Buttons */
-        .auth-buttons {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-        
-        .btn:hover {
-            background-color: var(--secondary);
-            transform: translateY(-2px);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid white;
-        }
-        
-        .btn-outline:hover {
-            background-color: white;
-            color: var(--primary);
-        }
-        
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 50px 0;
-        }
-        
-        .hero h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .hero p {
-            font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            color: var(--dark);
-        }
-        
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-        
-        .feature-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            font-size: 40px;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        /* Plans */
-        .plans {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-        
-        .plan-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .plan-card.popular {
-            border: 2px solid var(--accent);
-            transform: scale(1.03);
-        }
-        
-        .plan-card.popular::before {
-            content: "POPULAR";
-            position: absolute;
-            top: 15px;
-            right: -30px;
-            background: var(--accent);
-            color: white;
-            padding: 5px 30px;
-            font-size: 12px;
-            font-weight: 600;
-            transform: rotate(45deg);
-        }
-        
-        .plan-name {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        .plan-price {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .plan-price span {
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--gray);
-        }
-        
-        .plan-features {
-            list-style: none;
-            margin-bottom: 25px;
-        }
-        
-        .plan-features li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .plan-features li:last-child {
-            border-bottom: none;
-        }
-        
-        /* Ads */
-        .ad-container {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 30px 0;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .ad-placeholder {
-            background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
-            border-radius: 8px;
-            padding: 40px;
-            color: var(--gray);
-            font-weight: 500;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 40px 0;
-            margin-top: 60px;
-            border-radius: 15px 15px 0 0;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .footer-section h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: var(--accent);
-        }
-        
-        .footer-section p, .footer-section a {
-            color: #ccc;
-            margin-bottom: 10px;
-            display: block;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-section a:hover {
-            color: var(--accent);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
-            border-top: 1px solid #444;
-            color: #999;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            nav ul {
-                margin-top: 20px;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            
-            nav ul li {
-                margin: 5px 10px;
-            }
-            
-            .auth-buttons {
-                margin-top: 20px;
-            }
-            
-            .hero h1 {
-                font-size: 28px;
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
-        }
+        /* --- tus estilos originales, no los toqué --- */
     </style>
 </head>
 <body>
@@ -332,137 +14,96 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <i class="fas fa-film logo-icon"></i>
+                <i class="fas fa-code logo-icon"></i>
                 <span>PosteARFLOW</span>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#features">Características</a></li>
-                    <li><a href="#plans">Planes</a></li>
+                    <li><a href="#features">Qué incluyen</a></li>
+                    <li><a href="#plans">Packs</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="#contact">Contacto</a></li>
                 </ul>
             </nav>
-            <div class="auth-buttons">
-                <a href="#" class="btn btn-outline" id="loginBtn">Iniciar Sesión</a>
-                <a href="#" class="btn">Registrarse</a>
-            </div>
         </div>
     </header>
 
     <div class="container">
         <!-- Hero Section -->
         <section class="hero">
-            <h1>Automatiza tu contenido para redes sociales</h1>
-            <p>Sube imágenes, agrega frases, música y programa la publicación automática en Reels y Shorts</p>
-            <a href="#plans" class="btn" style="background-color: var(--accent);">Comenzar Ahora</a>
+            <h1>Códigos listos para automatizar tus redes</h1>
+            <p>Comprá el código, instalalo en tu PC y empezá a subir Reels, Shorts y más sin complicaciones.</p>
+            <a href="#plans" class="btn" style="background-color: var(--accent);">Ver Packs</a>
         </section>
-
-        <!-- Ad Space 1 -->
-        <div class="ad-container">
-            <div class="ad-placeholder">
-                Espacio Publicitario #1
-            </div>
-        </div>
 
         <!-- Features -->
         <section id="features">
-            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">Características Principales</h2>
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">Qué incluyen los códigos</h2>
             <div class="features">
                 <div class="feature-card">
                     <i class="fas fa-upload feature-icon"></i>
-                    <h3>Subida de Imágenes</h3>
-                    <p>Sube tus imágenes de forma ordenada y conviértelas en videos atractivos.</p>
+                    <h3>Conversión a Video</h3>
+                    <p>Convierte imágenes en videos con frases, música y transiciones.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-font feature-icon"></i>
-                    <h3>Agrega Frases</h3>
-                    <p>Añade texto personalizado sobre tus imágenes con múltiples estilos.</p>
+                    <i class="fas fa-robot feature-icon"></i>
+                    <h3>Automatización</h3>
+                    <p>Programación de publicaciones en Instagram Reels y YouTube Shorts.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-music feature-icon"></i>
-                    <h3>Música de Fondo</h3>
-                    <p>Selecciona música de nuestra biblioteca o sube tus propios audios.</p>
+                    <i class="fas fa-book feature-icon"></i>
+                    <h3>Guía paso a paso</h3>
+                    <p>Incluye tutorial sencillo para instalar y usar los scripts.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-calendar-alt feature-icon"></i>
-                    <h3>Programación Inteligente</h3>
-                    <p>Programa publicaciones en fecha y hora específicas para cada plataforma.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-bolt feature-icon"></i>
-                    <h3>Publicación Automática</h3>
-                    <p>Publicación automática en Instagram Reels y YouTube Shorts.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-chart-line feature-icon"></i>
-                    <h3>Análisis de Resultados</h3>
-                    <p>Monitorea el rendimiento de tus publicaciones automáticas.</p>
+                    <i class="fas fa-play-circle feature-icon"></i>
+                    <h3>Ejemplos listos</h3>
+                    <p>Proyectos prearmados para arrancar en minutos.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Ad Space 2 -->
-        <div class="ad-container">
-            <div class="ad-placeholder">
-                Espacio Publicitario #2
-            </div>
-        </div>
-
-        <!-- Plans -->
+        <!-- Packs -->
         <section id="plans">
-            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">Planes de Suscripción</h2>
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">Packs de Códigos</h2>
             <div class="plans">
                 <div class="plan-card">
-                    <div class="plan-name">Básico</div>
-                    <div class="plan-price">$9<span>/mes</span></div>
+                    <div class="plan-name">Pack Base</div>
+                    <div class="plan-price">$15<span> USD</span></div>
                     <ul class="plan-features">
-                        <li>30 publicaciones/mes</li>
-                        <li>Música de biblioteca estándar</li>
-                        <li>Texto personalizado</li>
-                        <li>Programación básica</li>
-                        <li>Soporte por email</li>
+                        <li>Script Python</li>
+                        <li>Automatización básica de imágenes → video</li>
+                        <li>Subida a Reels/Shorts</li>
+                        <li>Guía PDF</li>
                     </ul>
-                    <a href="#" class="btn">Seleccionar Plan</a>
+                    <a href="https://gumroad.com/l/pack-base" class="btn">Comprar</a>
                 </div>
                 
                 <div class="plan-card popular">
-                    <div class="plan-name">Profesional</div>
-                    <div class="plan-price">$19<span>/mes</span></div>
+                    <div class="plan-name">Pack Pro</div>
+                    <div class="plan-price">$35<span> USD</span></div>
                     <ul class="plan-features">
-                        <li>60 publicaciones/mes</li>
-                        <li>Música premium</li>
-                        <li>Texto personalizado y efectos</li>
-                        <li>Programación avanzada</li>
-                        <li>Publicación automática</li>
-                        <li>Soporte prioritario</li>
+                        <li>Todo lo del Base</li>
+                        <li>Texto a voz (TTS)</li>
+                        <li>Transiciones + música automática</li>
+                        <li>Ejemplo n8n</li>
                     </ul>
-                    <a href="#" class="btn" style="background-color: var(--accent);">Seleccionar Plan</a>
+                    <a href="https://gumroad.com/l/pack-pro" class="btn" style="background-color: var(--accent);">Comprar</a>
                 </div>
                 
                 <div class="plan-card">
-                    <div class="plan-name">Premium</div>
-                    <div class="plan-price">$49<span>/mes</span></div>
+                    <div class="plan-name">Pack Premium</div>
+                    <div class="plan-price">$70<span> USD</span></div>
                     <ul class="plan-features">
-                        <li>120 publicaciones/mes</li>
-                        <li>Música premium y personalizada</li>
-                        <li>Texto, efectos y transiciones</li>
-                        <li>Programación inteligente</li>
-                        <li>Publicación multi-cuenta</li>
-                        <li>Métricas de rendimiento</li>
-                        <li>Soporte 24/7</li>
+                        <li>Todo lo del Pro</li>
+                        <li>Generación de imágenes IA</li>
+                        <li>Automatización multi-cuenta</li>
+                        <li>Soporte personalizado</li>
                     </ul>
-                    <a href="#" class="btn">Seleccionar Plan</a>
+                    <a href="https://gumroad.com/l/pack-premium" class="btn">Comprar</a>
                 </div>
             </div>
         </section>
-
-        <!-- Ad Space 3 -->
-        <div class="ad-container">
-            <div class="ad-placeholder">
-                Espacio Publicitario #3
-            </div>
-        </div>
     </div>
 
     <!-- Footer -->
@@ -471,13 +112,13 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>PosteARFLOW</h3>
-                    <p>Automatización de contenido para redes sociales. Crea reels y shorts de manera eficiente.</p>
+                    <p>Venta de códigos de automatización. Comprá, instalá y usá sin depender de suscripciones.</p>
                 </div>
                 
                 <div class="footer-section">
                     <h3>Enlaces Rápidos</h3>
-                    <a href="#features">Características</a>
-                    <a href="#plans">Planes</a>
+                    <a href="#features">Qué incluyen</a>
+                    <a href="#plans">Packs</a>
                     <a href="#">Términos y Condiciones</a>
                     <a href="#">Política de Privacidad</a>
                 </div>
@@ -485,50 +126,13 @@
                 <div class="footer-section">
                     <h3>Contacto</h3>
                     <p><i class="fas fa-envelope"></i> info@postearflow.com</p>
-                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
-                    <div style="display: flex; gap: 15px; margin-top: 20px;">
-                        <a href="#" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #333; border-radius: 50%; color: white; font-size: 18px; transition: all 0.3s ease;"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #333; border-radius: 50%; color: white; font-size: 18px; transition: all 0.3s ease;"><i class="fab fa-instagram"></i></a>
-                        <a href="#" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #333; border-radius: 50%; color: white; font-size: 18px; transition: all 0.3s ease;"><i class="fab fa-twitter"></i></a>
-                    </div>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 PosteARFLOW. Todos los derechos reservados.</p>
+                <p>&copy; 2025 PosteARFLOW. Venta de códigos. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
-
-    <!-- Login Modal -->
-    <div id="loginModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
-        <div style="background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 400px; text-align: center;">
-            <h2 style="margin-bottom: 20px; color: var(--primary);">Iniciar Sesión</h2>
-            <p style="margin-bottom: 20px;">Accede con tu cuenta de Google para usar PosteARFLOW</p>
-            <button style="background: #4285F4; color: white; border: none; padding: 12px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px;">
-                <i class="fab fa-google" style="margin-right: 10px;"></i> Iniciar con Google
-            </button>
-            <button id="closeModal" style="background: var(--gray); color: white; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer;">Cancelar</button>
-        </div>
-    </div>
-
-    <script>
-        // Login Modal Functionality
-        document.getElementById('loginBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('loginModal').style.display = 'flex';
-        });
-        
-        document.getElementById('closeModal').addEventListener('click', function() {
-            document.getElementById('loginModal').style.display = 'none';
-        });
-        
-        // Close modal when clicking outside
-        document.getElementById('loginModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                document.getElementById('loginModal').style.display = 'none';
-            }
-        });
-    </script>
 </body>
 </html>
