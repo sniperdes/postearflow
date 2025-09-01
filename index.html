@@ -1,138 +1,284 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PosteARFLOW - Códigos de Automatización</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* --- tus estilos originales, no los toqué --- */
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PosteARFLOW - Packs de Código</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #3b82f6;
+      --accent: #f97316;
+      --light: #f0f9ff;
+      --dark: #1e293b;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --gray: #64748b;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    /* Header */
+    header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; padding: 15px 0; border-radius: 0 0 15px 15px; box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+    .header-content { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; }
+    .logo-icon { margin-right: 10px; font-size: 28px; }
+    nav ul { display: flex; list-style: none; }
+    nav ul li { margin-left: 20px; }
+    nav ul li a { color: #fff; text-decoration: none; font-weight: 500; transition: .3s; }
+    nav ul li a:hover { color: var(--accent); }
+    .auth-buttons { display: flex; gap: 15px; }
+    .btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: .3s; text-decoration: none; }
+    .btn:hover { background: var(--secondary); transform: translateY(-2px); }
+    .btn-outline { background: transparent; border: 2px solid #fff; }
+    .btn-outline:hover { background: #fff; color: var(--primary); }
+    /* Hero */
+    .hero { text-align: center; padding: 50px 0; }
+    .hero h1 { font-size: 36px; margin-bottom: 20px; color: var(--primary); }
+    .hero p { font-size: 18px; max-width: 780px; margin: 0 auto 30px; color: var(--dark); }
+    /* Features */
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 40px 0; }
+    .feature-card { background: #fff; border-radius: 12px; padding: 25px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,.05); transition: .3s; }
+    .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,.1); }
+    .feature-icon { font-size: 40px; color: var(--primary); margin-bottom: 15px; }
+    /* Plans/Packs */
+    .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 40px 0; }
+    .plan-card { background: #fff; border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,.05); transition: .3s; position: relative; overflow: hidden; }
+    .plan-card.popular { border: 2px solid var(--accent); transform: scale(1.03); }
+    .plan-card.popular::before { content: "POPULAR"; position: absolute; top: 15px; right: -30px; background: var(--accent); color: #fff; padding: 5px 30px; font-size: 12px; font-weight: 600; transform: rotate(45deg); }
+    .plan-name { font-size: 22px; font-weight: 700; margin-bottom: 15px; color: var(--primary); }
+    .plan-price { font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 20px; }
+    .plan-price span { font-size: 14px; font-weight: 500; color: var(--gray); }
+    .plan-features { list-style: none; margin-bottom: 25px; }
+    .plan-features li { padding: 8px 0; border-bottom: 1px solid #eee; }
+    .plan-features li:last-child { border-bottom: none; }
+    /* Ads */
+    .ad-container { background: #fff; border-radius: 12px; padding: 20px; margin: 30px 0; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,.05); }
+    .ad-placeholder { background: linear-gradient(45deg,#f3f4f6,#e5e7eb); border-radius: 8px; padding: 40px; color: var(--gray); font-weight: 500; }
+    /* Footer */
+    footer { background: var(--dark); color: #fff; padding: 40px 0; margin-top: 60px; border-radius: 15px 15px 0 0; }
+    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+    .footer-section h3 { font-size: 18px; margin-bottom: 20px; color: var(--accent); }
+    .footer-section p, .footer-section a { color: #ccc; margin-bottom: 10px; display: block; text-decoration: none; transition: .3s; }
+    .footer-section a:hover { color: var(--accent); }
+    .copyright { text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid #444; color: #999; }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content { flex-direction: column; text-align: center; }
+      nav ul { margin-top: 20px; justify-content: center; flex-wrap: wrap; }
+      nav ul li { margin: 5px 10px; }
+      .auth-buttons { margin-top: 20px; }
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 16px; }
+    }
+    /* Badges */
+    .badge { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #e5e7eb; padding: 6px 12px; border-radius: 999px; font-size: 12px; color: var(--gray); margin: 10px 6px 0; }
+    .grid-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-content">
-            <div class="logo">
-                <i class="fas fa-code logo-icon"></i>
-                <span>PosteARFLOW</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#features">Qué incluyen</a></li>
-                    <li><a href="#plans">Packs</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contact">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <!-- Header -->
+  <header>
+    <div class="container header-content">
+      <div class="logo">
+        <i class="fas fa-film logo-icon"></i>
+        <span>PosteARFLOW</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#features">Características</a></li>
+          <li><a href="#packs">Packs</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <a href="#packs" class="btn btn-outline">Ver Packs</a>
+        <a href="#contact" class="btn">Soporte</a>
+      </div>
+    </div>
+  </header>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1>Códigos listos para automatizar tus redes</h1>
-            <p>Comprá el código, instalalo en tu PC y empezá a subir Reels, Shorts y más sin complicaciones.</p>
-            <a href="#plans" class="btn" style="background-color: var(--accent);">Ver Packs</a>
-        </section>
+  <div class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Automatizá tus Reels & Shorts con nuestros <strong>packs de código</strong></h1>
+      <p>Incluye scripts Python, flujos n8n listos, y guías paso a paso para publicar imágenes con frases, audio y video en Instagram y YouTube.</p>
+      <a href="#packs" class="btn" style="background-color: var(--accent);">Ver Packs</a>
+      <div>
+        <span class="badge"><i class="fa-solid fa-code"></i> Código fuente incluido</span>
+        <span class="badge"><i class="fa-solid fa-diagram-project"></i> Flujos n8n</span>
+        <span class="badge"><i class="fa-solid fa-book"></i> Guías PDF</span>
+      </div>
+    </section>
 
-        <!-- Features -->
-        <section id="features">
-            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">Qué incluyen los códigos</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <i class="fas fa-upload feature-icon"></i>
-                    <h3>Conversión a Video</h3>
-                    <p>Convierte imágenes en videos con frases, música y transiciones.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-robot feature-icon"></i>
-                    <h3>Automatización</h3>
-                    <p>Programación de publicaciones en Instagram Reels y YouTube Shorts.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-book feature-icon"></i>
-                    <h3>Guía paso a paso</h3>
-                    <p>Incluye tutorial sencillo para instalar y usar los scripts.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-play-circle feature-icon"></i>
-                    <h3>Ejemplos listos</h3>
-                    <p>Proyectos prearmados para arrancar en minutos.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Packs -->
-        <section id="plans">
-            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">Packs de Códigos</h2>
-            <div class="plans">
-                <div class="plan-card">
-                    <div class="plan-name">Pack Base</div>
-                    <div class="plan-price">$15<span> USD</span></div>
-                    <ul class="plan-features">
-                        <li>Script Python</li>
-                        <li>Automatización básica de imágenes → video</li>
-                        <li>Subida a Reels/Shorts</li>
-                        <li>Guía PDF</li>
-                    </ul>
-                    <a href="https://gumroad.com/l/pack-base" class="btn">Comprar</a>
-                </div>
-                
-                <div class="plan-card popular">
-                    <div class="plan-name">Pack Pro</div>
-                    <div class="plan-price">$35<span> USD</span></div>
-                    <ul class="plan-features">
-                        <li>Todo lo del Base</li>
-                        <li>Texto a voz (TTS)</li>
-                        <li>Transiciones + música automática</li>
-                        <li>Ejemplo n8n</li>
-                    </ul>
-                    <a href="https://gumroad.com/l/pack-pro" class="btn" style="background-color: var(--accent);">Comprar</a>
-                </div>
-                
-                <div class="plan-card">
-                    <div class="plan-name">Pack Premium</div>
-                    <div class="plan-price">$70<span> USD</span></div>
-                    <ul class="plan-features">
-                        <li>Todo lo del Pro</li>
-                        <li>Generación de imágenes IA</li>
-                        <li>Automatización multi-cuenta</li>
-                        <li>Soporte personalizado</li>
-                    </ul>
-                    <a href="https://gumroad.com/l/pack-premium" class="btn">Comprar</a>
-                </div>
-            </div>
-        </section>
+    <!-- Ad Space 1 -->
+    <div class="ad-container">
+      <div class="ad-placeholder">Espacio Publicitario #1</div>
     </div>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>PosteARFLOW</h3>
-                    <p>Venta de códigos de automatización. Comprá, instalá y usá sin depender de suscripciones.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Enlaces Rápidos</h3>
-                    <a href="#features">Qué incluyen</a>
-                    <a href="#plans">Packs</a>
-                    <a href="#">Términos y Condiciones</a>
-                    <a href="#">Política de Privacidad</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Contacto</h3>
-                    <p><i class="fas fa-envelope"></i> info@postearflow.com</p>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2025 PosteARFLOW. Venta de códigos. Todos los derechos reservados.</p>
-            </div>
+    <!-- Features -->
+    <section id="features">
+      <h2 style="text-align:center; margin-bottom:30px; color: var(--primary);">¿Qué incluye?</h2>
+      <div class="features">
+        <div class="feature-card">
+          <i class="fas fa-upload feature-icon"></i>
+          <h3>Procesamiento de Imágenes</h3>
+          <p>Scripts que toman imágenes de una carpeta, agregan frases y hashtags automáticamente.</p>
         </div>
-    </footer>
+        <div class="feature-card">
+          <i class="fas fa-music feature-icon"></i>
+          <h3>Audio & Video</h3>
+          <p>Convierte imágenes en video, mezcla música o TTS, y genera Reels/Shorts.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-robot feature-icon"></i>
+          <h3>Automatización</h3>
+          <p>Flujos n8n para ejecutar tareas cada X minutos y publicar automáticamente.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-shield-halved feature-icon"></i>
+          <h3>Configuración Simple</h3>
+          <p>Archivos .env, ejemplos y documentación clara para que funcione de una.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-plug feature-icon"></i>
+          <h3>Integraciones</h3>
+          <p>Instagram, YouTube, Telegram, y más mediante API o herramientas oficiales.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-life-ring feature-icon"></i>
+          <h3>Soporte</h3>
+          <p>Acceso a soporte por email y mejoras futuras según el pack.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ad Space 2 -->
+    <div class="ad-container">
+      <div class="ad-placeholder">Espacio Publicitario #2</div>
+    </div>
+
+    <!-- Packs (antes "Planes") -->
+    <section id="packs">
+      <h2 style="text-align:center; margin-bottom:30px; color: var(--primary);">Elegí tu Pack</h2>
+      <div class="plans">
+        <!-- Pack Básico -->
+        <div class="plan-card">
+          <div class="plan-name">Pack Básico</div>
+          <div class="plan-price">US$ 19 <span>/pago único</span></div>
+          <ul class="plan-features">
+            <li>Script: poner frase + hashtags sobre imagen</li>
+            <li>Flujo n8n: carpeta → imagen con frase</li>
+            <li>Guía PDF de instalación</li>
+            <li>Soporte por email (7 días)</li>
+          </ul>
+          <div class="grid-cta">
+            <a href="#demo-basico" class="btn btn-outline">Ver demo</a>
+            <a href="#comprar-basico" class="btn">Comprar</a>
+          </div>
+        </div>
+        <!-- Pack Pro -->
+        <div class="plan-card popular">
+          <div class="plan-name">Pack Pro</div>
+          <div class="plan-price">US$ 39 <span>/pago único</span></div>
+          <ul class="plan-features">
+            <li>Todo lo del Básico</li>
+            <li>Script: imagen → video con audio (Reel/Short)</li>
+            <li>Flujo n8n: auto-publicación IG/YouTube</li>
+            <li>Plantillas de estilos (titulado/TTF)</li>
+            <li>Soporte prioritario (15 días)</li>
+          </ul>
+          <div class="grid-cta">
+            <a href="#demo-pro" class="btn btn-outline">Ver demo</a>
+            <a href="#comprar-pro" class="btn" style="background-color: var(--accent);">Comprar</a>
+          </div>
+        </div>
+        <!-- Pack Premium -->
+        <div class="plan-card">
+          <div class="plan-name">Pack Premium</div>
+          <div class="plan-price">US$ 69 <span>/pago único</span></div>
+          <ul class="plan-features">
+            <li>Todo lo del Pro</li>
+            <li>Generador de imágenes por prompts (IA)</li>
+            <li>Flujos n8n avanzados + ejemplos</li>
+            <li>Actualizaciones por 3 meses</li>
+            <li>1 call de onboarding (30 min)</li>
+          </ul>
+          <div class="grid-cta">
+            <a href="#demo-premium" class="btn btn-outline">Ver demo</a>
+            <a href="#comprar-premium" class="btn">Comprar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ad Space 3 -->
+    <div class="ad-container">
+      <div class="ad-placeholder">Espacio Publicitario #3</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>PosteARFLOW</h3>
+          <p>Automatización de contenido para redes sociales. Reels y Shorts a un click.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Enlaces</h3>
+          <a href="#features">Características</a>
+          <a href="#packs">Packs</a>
+          <a href="#">Términos y Condiciones</a>
+          <a href="#">Política de Privacidad</a>
+        </div>
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <p><i class="fas fa-envelope"></i> info@postearflow.com</p>
+          <p><i class="fas fa-phone"></i> +54 (11) 1234-5678</p>
+          <div style="display:flex; gap:15px; margin-top:20px;">
+            <a href="#" style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; background:#333; border-radius:50%; color:#fff; font-size:18px; transition:.3s;"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; background:#333; border-radius:50%; color:#fff; font-size:18px; transition:.3s;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; background:#333; border-radius:50%; color:#fff; font-size:18px; transition:.3s;"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 PosteARFLOW. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- (Opcional) Modal de ayuda rápida -->
+  <div id="helpModal" style="display:none; position:fixed; inset:0; background: rgba(0,0,0,.5); z-index:1000; justify-content:center; align-items:center;">
+    <div style="background:#fff; padding:30px; border-radius:12px; width:90%; max-width:420px; text-align:center;">
+      <h2 style="margin-bottom:10px; color: var(--primary);">¿Cómo comprar?</h2>
+      <p style="margin-bottom:20px; color: var(--gray);">Elegí un pack y tocá en <strong>Comprar</strong>. Te redirigimos al checkout (próximamente Gumroad).</p>
+      <button id="closeHelp" class="btn" style="width:100%;">Entendido</button>
+    </div>
+  </div>
+
+  <script>
+    // Ejemplo simple para abrir modal desde links "Comprar" (mientras no integramos checkout)
+    document.querySelectorAll('a[href^="#comprar-"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('helpModal').style.display = 'flex';
+      });
+    });
+    document.getElementById('closeHelp').addEventListener('click', () => {
+      document.getElementById('helpModal').style.display = 'none';
+    });
+    // Cerrar modal al hacer click fuera
+    document.getElementById('helpModal').addEventListener('click', (e) => {
+      if (e.target.id === 'helpModal') {
+        document.getElementById('helpModal').style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
