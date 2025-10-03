@@ -1,843 +1,188 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro de Estética - Masajes Relajantes</title>
-    <style>
-        /* Estilos generales */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        h2 {
-            text-align: center;
-            margin-bottom: 50px;
-            font-size: 2.5rem;
-            color: #5a4a42;
-            position: relative;
-        }
-        
-        h2:after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 3px;
-            background: #d4af7a;
-            margin: 15px auto;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: #d4af7a;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background: #c19a65;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        /* Header */
-        header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #5a4a42;
-        }
-        
-        .logo span {
-            color: #d4af7a;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 30px;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: #5a4a42;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: #d4af7a;
-        }
-        
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* Modal de activación de sonido */
-        .sound-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-        
-        .modal-content {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        
-        .modal-content h3 {
-            margin-bottom: 20px;
-            color: #5a4a42;
-            font-size: 1.8rem;
-        }
-        
-        .modal-content p {
-            margin-bottom: 30px;
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        .modal-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        
-        .modal-btn {
-            padding: 12px 25px;
-            border-radius: 30px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            min-width: 140px;
-        }
-        
-        .modal-btn.activate {
-            background: #d4af7a;
-            color: white;
-        }
-        
-        .modal-btn.activate:hover {
-            background: #c19a65;
-            transform: translateY(-2px);
-        }
-        
-        .modal-btn.skip {
-            background: #f0f0f0;
-            color: #666;
-        }
-        
-        .modal-btn.skip:hover {
-            background: #e0e0e0;
-            transform: translateY(-2px);
-        }
-        
-        /* Control de audio */
-        .audio-control {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.2);
-            cursor: pointer;
-            z-index: 1000;
-            transition: all 0.3s;
-        }
-        
-        .audio-control:hover {
-            transform: scale(1.1);
-        }
-        
-        .audio-control i {
-            font-size: 1.5rem;
-            color: #5a4a42;
-        }
-        
-        .audio-control.muted i {
-            color: #ccc;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-        
-        /* Servicios */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .service-img {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .service-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .service-card:hover .service-img img {
-            transform: scale(1.1);
-        }
-        
-        .service-content {
-            padding: 20px;
-        }
-        
-        .service-content h3 {
-            margin-bottom: 10px;
-            color: #5a4a42;
-        }
-        
-        .service-content p {
-            color: #666;
-            margin-bottom: 15px;
-        }
-        
-        .service-price {
-            font-weight: bold;
-            color: #d4af7a;
-            font-size: 1.2rem;
-        }
-        
-        /* Precios */
-        .pricing-table {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .price-card {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        
-        .price-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .price-card h3 {
-            margin-bottom: 15px;
-            color: #5a4a42;
-        }
-        
-        .price-card .price {
-            font-size: 2.5rem;
-            color: #d4af7a;
-            margin: 20px 0;
-        }
-        
-        .price-card ul {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-        
-        .price-card ul li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        /* Turnos */
-        .booking {
-            background: #f9f5f0;
-        }
-        
-        .booking-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 50px;
-        }
-        
-        .booking-image {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .booking-image img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .booking-content {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .booking-content h2 {
-            text-align: left;
-        }
-        
-        .booking-content h2:after {
-            margin: 15px 0;
-        }
-        
-        .booking-content p {
-            margin-bottom: 30px;
-            color: #666;
-        }
-        
-        .whatsapp-btn {
-            background: #25D366;
-            display: inline-flex;
-            align-items: center;
-            padding: 15px 30px;
-        }
-        
-        .whatsapp-btn:hover {
-            background: #128C7E;
-        }
-        
-        .whatsapp-btn i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-        
-        /* Footer */
-        footer {
-            background: #5a4a42;
-            color: white;
-            padding: 50px 0 20px;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-column h3 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-column ul li a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-column ul li a:hover {
-            color: #d4af7a;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            }
-            
-            nav ul.show {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 10px 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .modal-buttons {
-                flex-direction: column;
-            }
-            
-            .modal-btn {
-                width: 100%;
-            }
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Barbería</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      transition: background 0.5s, color 0.5s;
+      background-size: cover;
+      background-position: center;
+    }
+
+    header {
+      padding: 2rem;
+      background: rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .btn-wsp {
+      background: #25D366;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 18px;
+      display: inline-block;
+      margin-top: 1.5rem;
+    }
+
+    /* 🎵 Modal sonido */
+    #soundModal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    #soundModal button {
+      background: #25D366;
+      color: white;
+      font-size: 20px;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    /* 🎚 Control flotante sonido */
+    #audioControl {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.6);
+      border-radius: 50%;
+      padding: 12px;
+      cursor: pointer;
+      z-index: 1100;
+    }
+
+    #audioControl img {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* ☀️🌙 Botón de tema */
+    #themeToggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.6);
+      border: none;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1200;
+      color: white;
+      font-size: 22px;
+    }
+
+    /* 🌇 Modo con imagen */
+    body.barberia {
+      background: url('barberia.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    body.barberia header {
+      background: rgba(0,0,0,0.6);
+    }
+  </style>
 </head>
 <body>
-    <!-- Modal de activación de sonido -->
-    <div class="sound-modal" id="soundModal">
-        <div class="modal-content">
-            <h3>🌿 Experiencia de Relajación Completa</h3>
-            <p>Sumérgete en una atmósfera de tranquilidad con nuestra música ambiental relajante. Activa el sonido para una experiencia más inmersiva.</p>
-            <div class="modal-buttons">
-                <button class="modal-btn activate" id="activateSound">
-                    <i class="fas fa-volume-up"></i> Activar Sonido
-                </button>
-                <button class="modal-btn skip" id="skipSound">
-                    Continuar sin Sonido
-                </button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Control de audio -->
-    <div class="audio-control" id="audioControl" style="display: none;">
-        <i class="fas fa-volume-up"></i>
-    </div>
-    
-    <!-- Audio para sonido ambiental - Usando un enlace directo y confiable -->
-    <audio id="ambientSound" loop preload="metadata">
-        <source src="https://assets.mixkit.co/music/preview/mixkit-spiritual-ambience-479.mp3" type="audio/mpeg">
-        Tu navegador no soporta el elemento de audio.
-    </audio>
 
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">Centro<span>Estética</span></div>
-            <nav>
-                <ul id="navMenu">
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#precios">Precios</a></li>
-                    <li><a href="#turnos">Reservar Turno</a></li>
-                </ul>
-            </nav>
-            <div class="mobile-menu" id="mobileMenu">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </header>
+  <header>
+    <h1>Barbería El Estilo</h1>
+    <p>Tu look, tu estilo. Reserva tu turno ya.</p>
+    <a href="https://wa.me/5491122334455?text=Hola!%20Quiero%20reservar%20un%20turno%20✂️" class="btn-wsp">📲 Reservar por WhatsApp</a>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="container hero-content">
-            <h1>Bienestar y Relajación en Nuestras Manos</h1>
-            <p>Descubre nuestros tratamientos de masajes terapéuticos y relajantes diseñados para renovar tu cuerpo y mente.</p>
-            <a href="#turnos" class="btn">Reservar Turno</a>
-        </div>
-    </section>
+  <!-- 🎵 Modal inicial -->
+  <div id="soundModal">
+    <button id="activateSoundBtn">🔊 Activar sonido</button>
+  </div>
 
-    <!-- Servicios -->
-    <section id="servicios">
-        <div class="container">
-            <h2>Nuestros Servicios</h2>
-            <div class="services-grid">
-                <!-- Servicio 1 -->
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Masaje Relajante">
-                    </div>
-                    <div class="service-content">
-                        <h3>Masaje Relajante</h3>
-                        <p>Un masaje suave que ayuda a reducir el estrés y la tensión muscular, promoviendo la relajación profunda.</p>
-                        <div class="service-price">$2.500</div>
-                        <a href="#turnos" class="btn">Reservar</a>
-                    </div>
-                </div>
-                
-                <!-- Servicio 2 -->
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1591343395082-e120087004b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Masaje Terapéutico">
-                    </div>
-                    <div class="service-content">
-                        <h3>Masaje Terapéutico</h3>
-                        <p>Enfocado en aliviar dolores musculares específicos y mejorar la movilidad mediante técnicas especializadas.</p>
-                        <div class="service-price">$3.000</div>
-                        <a href="#turnos" class="btn">Reservar</a>
-                    </div>
-                </div>
-                
-                <!-- Servicio 3 -->
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Masaje Deportivo">
-                    </div>
-                    <div class="service-content">
-                        <h3>Masaje Deportivo</h3>
-                        <p>Diseñado para atletas y personas activas, ayuda a prevenir lesiones y mejorar el rendimiento físico.</p>
-                        <div class="service-price">$3.200</div>
-                        <a href="#turnos" class="btn">Reservar</a>
-                    </div>
-                </div>
-                
-                <!-- Servicio 4 -->
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1591343395082-e120087004b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Masaje con Piedras Calientes">
-                    </div>
-                    <div class="service-content">
-                        <h3>Masaje con Piedras Calientes</h3>
-                        <p>Combinación de masaje tradicional con piedras volcánicas calientes para una relajación profunda.</p>
-                        <div class="service-price">$3.800</div>
-                        <a href="#turnos" class="btn">Reservar</a>
-                    </div>
-                </div>
-                
-                <!-- Servicio 5 -->
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Reflexología Podal">
-                    </div>
-                    <div class="service-content">
-                        <h3>Reflexología Podal</h3>
-                        <p>Técnica de presión en puntos específicos de los pies para estimular órganos y sistemas del cuerpo.</p>
-                        <div class="service-price">$2.800</div>
-                        <a href="#turnos" class="btn">Reservar</a>
-                    </div>
-                </div>
-                
-                <!-- Servicio 6 -->
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Masaje Descontracturante">
-                    </div>
-                    <div class="service-content">
-                        <h3>Masaje Descontracturante</h3>
-                        <p>Enfocado en liberar tensiones y contracturas musculares, especialmente en espalda, cuello y hombros.</p>
-                        <div class="service-price">$3.500</div>
-                        <a href="#turnos" class="btn">Reservar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- 🎚 Control flotante sonido -->
+  <div id="audioControl">
+    <img id="soundIcon" src="https://img.icons8.com/ios-filled/50/ffffff/speaker.png" alt="control sonido"/>
+  </div>
 
-    <!-- Precios -->
-    <section id="precios" style="background-color: #f9f5f0;">
-        <div class="container">
-            <h2>Nuestros Precios</h2>
-            <div class="pricing-table">
-                <!-- Plan 1 -->
-                <div class="price-card">
-                    <h3>Sesión Individual</h3>
-                    <div class="price">$2.500</div>
-                    <ul>
-                        <li>60 minutos de masaje</li>
-                        <li>Aceites esenciales</li>
-                        <li>Ambiente relajante</li>
-                        <li>Música terapéutica</li>
-                    </ul>
-                    <a href="#turnos" class="btn">Reservar</a>
-                </div>
-                
-                <!-- Plan 2 -->
-                <div class="price-card">
-                    <h3>Pack 4 Sesiones</h3>
-                    <div class="price">$9.000</div>
-                    <ul>
-                        <li>4 sesiones de 60 min</li>
-                        <li>Ahorra $1.000</li>
-                        <li>Válido por 2 meses</li>
-                        <li>Flexibilidad de horarios</li>
-                    </ul>
-                    <a href="#turnos" class="btn">Reservar</a>
-                </div>
-                
-                <!-- Plan 3 -->
-                <div class="price-card">
-                    <h3>Pack 8 Sesiones</h3>
-                    <div class="price">$16.000</div>
-                    <ul>
-                        <li>8 sesiones de 60 min</li>
-                        <li>Ahorra $4.000</li>
-                        <li>Válido por 4 meses</li>
-                        <li>1 sesión de regalo</li>
-                    </ul>
-                    <a href="#turnos" class="btn">Reservar</a>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- ☀️🌙 Botón de tema -->
+  <button id="themeToggle">🌙</button>
 
-    <!-- Turnos -->
-    <section id="turnos">
-        <div class="container booking-container">
-            <div class="booking-image">
-                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Reserva tu turno">
-            </div>
-            <div class="booking-content">
-                <h2>Reserva Tu Turno</h2>
-                <p>¿Listo para experimentar el bienestar? Reserva tu turno ahora mismo a través de WhatsApp y nuestro equipo te atenderá personalmente para coordinar día y hora según tu disponibilidad.</p>
-                <a href="https://wa.me/5491112345678?text=Hola,%20me%20interesa%20reservar%20un%20turno%20para%20masaje" class="btn whatsapp-btn" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Reservar por WhatsApp
-                </a>
-            </div>
-        </div>
-    </section>
+  <!-- 🎶 Audio -->
+  <audio id="ambientSound" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-column">
-                    <h3>Centro Estética</h3>
-                    <p>Tu espacio de bienestar y relajación en la ciudad.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Enlaces Rápidos</h3>
-                    <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#precios">Precios</a></li>
-                        <li><a href="#turnos">Reservar Turno</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contacto</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Calle Principal 123, Ciudad</li>
-                        <li><i class="fas fa-phone"></i> (011) 1234-5678</li>
-                        <li><i class="fas fa-envelope"></i> info@centroestetica.com</li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Horarios</h3>
-                    <ul>
-                        <li>Lunes a Viernes: 9:00 - 20:00</li>
-                        <li>Sábados: 9:00 - 14:00</li>
-                        <li>Domingos: Cerrado</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2023 Centro Estética. Todos los derechos reservados.
-            </div>
-        </div>
-    </footer>
+  <script>
+    const ambientSound = document.getElementById('ambientSound');
+    const activateSoundBtn = document.getElementById('activateSoundBtn');
+    const soundModal = document.getElementById('soundModal');
+    const audioControl = document.getElementById('audioControl');
+    const soundIcon = document.getElementById('soundIcon');
+    const themeToggle = document.getElementById('themeToggle');
+    let isPlaying = false;
+    let isDark = true;
 
-    <script>
-        // Script para el control de audio - Versión corregida
-        document.addEventListener('DOMContentLoaded', function() {
-            const soundModal = document.getElementById('soundModal');
-            const activateSoundBtn = document.getElementById('activateSound');
-            const skipSoundBtn = document.getElementById('skipSound');
-            const audioControl = document.getElementById('audioControl');
-            const ambientSound = document.getElementById('ambientSound');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const navMenu = document.getElementById('navMenu');
-            
-            let isPlaying = false;
-            
-            // Mostrar el modal al cargar la página
-            soundModal.style.display = 'flex';
-            
-            // Configurar el audio
-            ambientSound.volume = 0.3; // Volumen bajo para ambiente
-            
-            // Activar sonido cuando el usuario hace clic en el botón
-            activateSoundBtn.addEventListener('click', function() {
-                // Primero cargar el audio
-                ambientSound.load();
-                
-                // Luego intentar reproducir
-                const playPromise = ambientSound.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        // Reproducción exitosa
-                        isPlaying = true;
-                        soundModal.style.display = 'none';
-                        audioControl.style.display = 'flex';
-                        console.log("Sonido activado correctamente");
-                    }).catch(error => {
-                        // Error en reproducción
-                        console.log("Error al reproducir:", error);
-                        // Mostrar mensaje alternativo
-                        soundModal.innerHTML = `
-                            <div class="modal-content">
-                                <h3>⚠️ Atención</h3>
-                                <p>El navegador bloqueó la reproducción automática. Por favor, haz clic en el icono de sonido que aparecerá abajo para activarlo manualmente.</p>
-                                <button class="modal-btn skip" id="continueAnyway">Continuar</button>
-                            </div>
-                        `;
-                        
-                        document.getElementById('continueAnyway').addEventListener('click', function() {
-                            soundModal.style.display = 'none';
-                            audioControl.style.display = 'flex';
-                        });
-                    });
-                }
-            });
-            
-            // Saltar sonido
-            skipSoundBtn.addEventListener('click', function() {
-                soundModal.style.display = 'none';
-                audioControl.style.display = 'none';
-            });
-            
-            // Control de audio flotante
-            audioControl.addEventListener('click', function() {
-                if (isPlaying) {
-                    ambientSound.pause();
-                    audioControl.classList.add('muted');
-                    audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                    isPlaying = false;
-                } else {
-                    ambientSound.play().then(() => {
-                        audioControl.classList.remove('muted');
-                        audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
-                        isPlaying = true;
-                    }).catch(error => {
-                        console.log("Error al reanudar:", error);
-                        alert("Para activar el sonido, por favor haz clic en cualquier parte de la página primero.");
-                    });
-                }
-            });
-            
-            // Menú móvil
-            mobileMenu.addEventListener('click', function() {
-                navMenu.classList.toggle('show');
-            });
-            
-            // Cerrar menú al hacer clic en un enlace
-            document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('click', function() {
-                    navMenu.classList.remove('show');
-                });
-            });
-            
-            // Suavizar el scroll
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
+    // Activar sonido al hacer click
+    activateSoundBtn.addEventListener('click', function() {
+      ambientSound.currentTime = 0;
+      ambientSound.volume = 0.3;
+      
+      ambientSound.play().then(() => {
+        isPlaying = true;
+        soundModal.style.display = 'none';
+        audioControl.style.display = 'flex';
+      }).catch(error => {
+        alert("Tu navegador bloqueó el audio. Tocá el ícono de volumen para activarlo.");
+        soundModal.style.display = 'none';
+        audioControl.style.display = 'flex';
+      });
+    });
+
+    // Control flotante play/pause
+    audioControl.addEventListener('click', function() {
+      if (isPlaying) {
+        ambientSound.pause();
+        isPlaying = false;
+        soundIcon.src = "https://img.icons8.com/ios-filled/50/ffffff/mute.png";
+      } else {
+        ambientSound.play().then(() => {
+          isPlaying = true;
+          soundIcon.src = "https://img.icons8.com/ios-filled/50/ffffff/speaker.png";
         });
-    </script>
+      }
+    });
+
+    // ☀️🌙 Cambio de tema
+    themeToggle.addEventListener('click', function() {
+      if (isDark) {
+        document.body.classList.add("barberia");
+        themeToggle.textContent = "☀️";
+        isDark = false;
+      } else {
+        document.body.classList.remove("barberia");
+        themeToggle.textContent = "🌙";
+        isDark = true;
+      }
+    });
+  </script>
 </body>
 </html>
