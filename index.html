@@ -116,6 +116,73 @@
             cursor: pointer;
         }
         
+        /* Modal de activación de sonido */
+        .sound-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .modal-content h3 {
+            margin-bottom: 20px;
+            color: #5a4a42;
+            font-size: 1.8rem;
+        }
+        
+        .modal-content p {
+            margin-bottom: 30px;
+            color: #666;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .modal-btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .modal-btn.activate {
+            background: #d4af7a;
+            color: white;
+        }
+        
+        .modal-btn.activate:hover {
+            background: #c19a65;
+        }
+        
+        .modal-btn.skip {
+            background: #f0f0f0;
+            color: #666;
+        }
+        
+        .modal-btn.skip:hover {
+            background: #e0e0e0;
+        }
+        
         /* Control de audio */
         .audio-control {
             position: fixed;
@@ -389,18 +456,34 @@
             h2 {
                 font-size: 2rem;
             }
+            
+            .modal-buttons {
+                flex-direction: column;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <!-- Modal de activación de sonido -->
+    <div class="sound-modal" id="soundModal">
+        <div class="modal-content">
+            <h3>Experiencia Inmersiva</h3>
+            <p>Para una experiencia completa, activa el sonido ambiental relajante que acompaña nuestra página.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn activate" id="activateSound">Activar Sonido</button>
+                <button class="modal-btn skip" id="skipSound">Continuar sin Sonido</button>
+            </div>
+        </div>
+    </div>
+    
     <!-- Control de audio -->
-    <div class="audio-control" id="audioControl">
+    <div class="audio-control" id="audioControl" style="display: none;">
         <i class="fas fa-volume-up"></i>
     </div>
     
     <!-- Audio para sonido ambiental -->
-    <audio id="ambientSound" loop>
+    <audio id="ambientSound" loop preload="auto">
         <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2139315b0f.mp3?filename=sad-melancolic-oriental-melody-21393.mp3" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
@@ -623,16 +706,43 @@
 
     <script>
         // Script para el control de audio
+        const soundModal = document.getElementById('soundModal');
+        const activateSoundBtn = document.getElementById('activateSound');
+        const skipSoundBtn = document.getElementById('skipSound');
         const audioControl = document.getElementById('audioControl');
         const ambientSound = document.getElementById('ambientSound');
         let isPlaying = false;
+        let userInteracted = false;
         
-        // Intentar reproducir automáticamente (con manejo de errores)
+        // Mostrar el modal al cargar la página
         window.addEventListener('load', function() {
-            // Los navegadores modernos bloquean la reproducción automática
-            // Por lo que solo intentaremos reproducir después de una interacción del usuario
+            soundModal.style.display = 'flex';
         });
         
+        // Activar sonido cuando el usuario hace clic en el botón
+        activateSoundBtn.addEventListener('click', function() {
+            userInteracted = true;
+            ambientSound.play().then(() => {
+                isPlaying = true;
+                soundModal.style.display = 'none';
+                audioControl.style.display = 'flex';
+            }).catch(error => {
+                console.log("Error al reproducir audio: ", error);
+                // Si falla, mostrar un mensaje alternativo
+                alert("No se pudo activar el sonido automáticamente. Por favor, haz clic en el icono de sonido en la esquina inferior derecha para activarlo manualmente.");
+                soundModal.style.display = 'none';
+                audioControl.style.display = 'flex';
+            });
+        });
+        
+        // Saltar sonido
+        skipSoundBtn.addEventListener('click', function() {
+            soundModal.style.display = 'none';
+            // No mostrar el control de audio si el usuario no quiere sonido
+            audioControl.style.display = 'none';
+        });
+        
+        // Control de audio flotante
         audioControl.addEventListener('click', function() {
             if (isPlaying) {
                 ambientSound.pause();
@@ -646,15 +756,14 @@
                     isPlaying = true;
                 }).catch(error => {
                     console.log("Error al reproducir audio: ", error);
-                    alert("Para activar el sonido ambiental, haz clic en cualquier parte de la página primero y luego en el icono de sonido.");
+                    alert("Para activar el sonido, por favor haz clic en cualquier parte de la página primero.");
                 });
             }
         });
         
         // Permitir la reproducción después de cualquier interacción del usuario
         document.addEventListener('click', function() {
-            // Esta función no hace nada específico, pero permite que el audio se reproduzca
-            // después de la primera interacción del usuario
+            userInteracted = true;
         }, { once: true });
         
         // Script para el menú móvil
