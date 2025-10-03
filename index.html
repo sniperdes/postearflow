@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro de Estética - Masajes Relajantes y Terapéuticos</title>
+    <title>Centro de Estética - Masajes Relajantes</title>
     <style>
         /* Estilos generales */
         * {
@@ -16,6 +16,7 @@
         body {
             color: #333;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
@@ -123,7 +124,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -137,6 +138,7 @@
             text-align: center;
             max-width: 500px;
             width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         
         .modal-content h3 {
@@ -148,6 +150,7 @@
         .modal-content p {
             margin-bottom: 30px;
             color: #666;
+            line-height: 1.6;
         }
         
         .modal-buttons {
@@ -163,6 +166,7 @@
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s;
+            min-width: 140px;
         }
         
         .modal-btn.activate {
@@ -172,6 +176,7 @@
         
         .modal-btn.activate:hover {
             background: #c19a65;
+            transform: translateY(-2px);
         }
         
         .modal-btn.skip {
@@ -181,6 +186,7 @@
         
         .modal-btn.skip:hover {
             background: #e0e0e0;
+            transform: translateY(-2px);
         }
         
         /* Control de audio */
@@ -190,12 +196,12 @@
             right: 20px;
             background: white;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.2);
             cursor: pointer;
             z-index: 1000;
             transition: all 0.3s;
@@ -206,7 +212,7 @@
         }
         
         .audio-control i {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             color: #5a4a42;
         }
         
@@ -443,6 +449,22 @@
         @media (max-width: 768px) {
             nav ul {
                 display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
             }
             
             .mobile-menu {
@@ -460,6 +482,10 @@
             .modal-buttons {
                 flex-direction: column;
             }
+            
+            .modal-btn {
+                width: 100%;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -468,11 +494,15 @@
     <!-- Modal de activación de sonido -->
     <div class="sound-modal" id="soundModal">
         <div class="modal-content">
-            <h3>Experiencia Inmersiva</h3>
-            <p>Para una experiencia completa, activa el sonido ambiental relajante que acompaña nuestra página.</p>
+            <h3>🌿 Experiencia de Relajación Completa</h3>
+            <p>Sumérgete en una atmósfera de tranquilidad con nuestra música ambiental relajante. Activa el sonido para una experiencia más inmersiva.</p>
             <div class="modal-buttons">
-                <button class="modal-btn activate" id="activateSound">Activar Sonido</button>
-                <button class="modal-btn skip" id="skipSound">Continuar sin Sonido</button>
+                <button class="modal-btn activate" id="activateSound">
+                    <i class="fas fa-volume-up"></i> Activar Sonido
+                </button>
+                <button class="modal-btn skip" id="skipSound">
+                    Continuar sin Sonido
+                </button>
             </div>
         </div>
     </div>
@@ -482,9 +512,9 @@
         <i class="fas fa-volume-up"></i>
     </div>
     
-    <!-- Audio para sonido ambiental -->
-    <audio id="ambientSound" loop preload="auto">
-        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2139315b0f.mp3?filename=sad-melancolic-oriental-melody-21393.mp3" type="audio/mpeg">
+    <!-- Audio para sonido ambiental - Usando un enlace directo y confiable -->
+    <audio id="ambientSound" loop preload="metadata">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-spiritual-ambience-479.mp3" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
 
@@ -493,14 +523,14 @@
         <div class="container header-container">
             <div class="logo">Centro<span>Estética</span></div>
             <nav>
-                <ul>
+                <ul id="navMenu">
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#servicios">Servicios</a></li>
                     <li><a href="#precios">Precios</a></li>
                     <li><a href="#turnos">Reservar Turno</a></li>
                 </ul>
             </nav>
-            <div class="mobile-menu">
+            <div class="mobile-menu" id="mobileMenu">
                 <i class="fas fa-bars"></i>
             </div>
         </div>
@@ -705,80 +735,106 @@
     </footer>
 
     <script>
-        // Script para el control de audio
-        const soundModal = document.getElementById('soundModal');
-        const activateSoundBtn = document.getElementById('activateSound');
-        const skipSoundBtn = document.getElementById('skipSound');
-        const audioControl = document.getElementById('audioControl');
-        const ambientSound = document.getElementById('ambientSound');
-        let isPlaying = false;
-        let userInteracted = false;
-        
-        // Mostrar el modal al cargar la página
-        window.addEventListener('load', function() {
+        // Script para el control de audio - Versión corregida
+        document.addEventListener('DOMContentLoaded', function() {
+            const soundModal = document.getElementById('soundModal');
+            const activateSoundBtn = document.getElementById('activateSound');
+            const skipSoundBtn = document.getElementById('skipSound');
+            const audioControl = document.getElementById('audioControl');
+            const ambientSound = document.getElementById('ambientSound');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navMenu = document.getElementById('navMenu');
+            
+            let isPlaying = false;
+            
+            // Mostrar el modal al cargar la página
             soundModal.style.display = 'flex';
-        });
-        
-        // Activar sonido cuando el usuario hace clic en el botón
-        activateSoundBtn.addEventListener('click', function() {
-            userInteracted = true;
-            ambientSound.play().then(() => {
-                isPlaying = true;
-                soundModal.style.display = 'none';
-                audioControl.style.display = 'flex';
-            }).catch(error => {
-                console.log("Error al reproducir audio: ", error);
-                // Si falla, mostrar un mensaje alternativo
-                alert("No se pudo activar el sonido automáticamente. Por favor, haz clic en el icono de sonido en la esquina inferior derecha para activarlo manualmente.");
-                soundModal.style.display = 'none';
-                audioControl.style.display = 'flex';
-            });
-        });
-        
-        // Saltar sonido
-        skipSoundBtn.addEventListener('click', function() {
-            soundModal.style.display = 'none';
-            // No mostrar el control de audio si el usuario no quiere sonido
-            audioControl.style.display = 'none';
-        });
-        
-        // Control de audio flotante
-        audioControl.addEventListener('click', function() {
-            if (isPlaying) {
-                ambientSound.pause();
-                audioControl.classList.add('muted');
-                audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                isPlaying = false;
-            } else {
-                ambientSound.play().then(() => {
-                    audioControl.classList.remove('muted');
-                    audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
-                    isPlaying = true;
-                }).catch(error => {
-                    console.log("Error al reproducir audio: ", error);
-                    alert("Para activar el sonido, por favor haz clic en cualquier parte de la página primero.");
-                });
-            }
-        });
-        
-        // Permitir la reproducción después de cualquier interacción del usuario
-        document.addEventListener('click', function() {
-            userInteracted = true;
-        }, { once: true });
-        
-        // Script para el menú móvil
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').style.display = 
-                document.querySelector('nav ul').style.display === 'flex' ? 'none' : 'flex';
-        });
-        
-        // Script para suavizar el scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+            
+            // Configurar el audio
+            ambientSound.volume = 0.3; // Volumen bajo para ambiente
+            
+            // Activar sonido cuando el usuario hace clic en el botón
+            activateSoundBtn.addEventListener('click', function() {
+                // Primero cargar el audio
+                ambientSound.load();
                 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+                // Luego intentar reproducir
+                const playPromise = ambientSound.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Reproducción exitosa
+                        isPlaying = true;
+                        soundModal.style.display = 'none';
+                        audioControl.style.display = 'flex';
+                        console.log("Sonido activado correctamente");
+                    }).catch(error => {
+                        // Error en reproducción
+                        console.log("Error al reproducir:", error);
+                        // Mostrar mensaje alternativo
+                        soundModal.innerHTML = `
+                            <div class="modal-content">
+                                <h3>⚠️ Atención</h3>
+                                <p>El navegador bloqueó la reproducción automática. Por favor, haz clic en el icono de sonido que aparecerá abajo para activarlo manualmente.</p>
+                                <button class="modal-btn skip" id="continueAnyway">Continuar</button>
+                            </div>
+                        `;
+                        
+                        document.getElementById('continueAnyway').addEventListener('click', function() {
+                            soundModal.style.display = 'none';
+                            audioControl.style.display = 'flex';
+                        });
+                    });
+                }
+            });
+            
+            // Saltar sonido
+            skipSoundBtn.addEventListener('click', function() {
+                soundModal.style.display = 'none';
+                audioControl.style.display = 'none';
+            });
+            
+            // Control de audio flotante
+            audioControl.addEventListener('click', function() {
+                if (isPlaying) {
+                    ambientSound.pause();
+                    audioControl.classList.add('muted');
+                    audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    isPlaying = false;
+                } else {
+                    ambientSound.play().then(() => {
+                        audioControl.classList.remove('muted');
+                        audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                        isPlaying = true;
+                    }).catch(error => {
+                        console.log("Error al reanudar:", error);
+                        alert("Para activar el sonido, por favor haz clic en cualquier parte de la página primero.");
+                    });
+                }
+            });
+            
+            // Menú móvil
+            mobileMenu.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+            });
+            
+            // Cerrar menú al hacer clic en un enlace
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('show');
+                });
+            });
+            
+            // Suavizar el scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
                 });
             });
         });
