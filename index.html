@@ -93,9 +93,10 @@
     <img id="soundIcon" src="https://img.icons8.com/ios-filled/50/ffffff/speaker.png" alt="control sonido"/>
   </div>
 
-  <!-- 🎶 Audio -->
+  <!-- 🎶 Audio con enlace de Pixabay -->
   <audio id="ambientSound" loop>
-    <source src="musica.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c6f52b6f6a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
   </audio>
 
   <script>
@@ -116,7 +117,6 @@
         soundIcon.src = "https://img.icons8.com/ios-filled/50/ffffff/speaker.png";
       } catch (err) {
         console.log("Error al reproducir sonido:", err);
-        // aunque falle, seguimos
       }
       soundModal.style.display = 'none'; 
       audioControl.style.display = 'flex';
